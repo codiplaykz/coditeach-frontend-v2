@@ -1,11 +1,13 @@
 import React from 'react';
 import './styles/main.scss'
-import Icon from "./helpers/icon";
+import {Route, Routes} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-        <Icon color={""} size={1} name={"Add"}/>
+        <Routes>
+            <Route path={"/login"} element={<>Test</>}/>
+        </Routes>
     </div>
   );
 }
