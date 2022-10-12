@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
             <Route path={"/login"} element={<LoginPage/>}/>
             <Route path={"/"} element={
                 <ProtectedRoute>
+                    <Sidebar/>
                     <HomePage/>
                 </ProtectedRoute>
             }/>

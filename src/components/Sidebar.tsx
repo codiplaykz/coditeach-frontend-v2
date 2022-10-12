@@ -64,7 +64,7 @@ export default function Sidebar() {
         return (
             adminItems.map((item, index)=> {
                 return (
-                    <div onClick={() => {setActiveItem(index)}} className={`${index === activeItem ? 'sidebar-item-active' : ''} sidebar-item`}>
+                    <div key={`${index}-link`} onClick={() => {setActiveItem(index)}} className={`${index === activeItem ? 'sidebar-item-active' : ''} sidebar-item`}>
                         {/*@ts-ignore*/}
                         <Icon color={'#C2C2C2'} size={1} name={item.iconName}/>
                         {item.title}
