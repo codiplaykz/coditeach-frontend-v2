@@ -1,17 +1,12 @@
-import {useDispatch} from "react-redux";
-import {removeUser} from "../store/slices/userSlice";
+import Sidebar from "../components/Sidebar";
 
 export default function HomePage() {
-    const dispatch = useDispatch()
-
-    const logout = () => {
-        dispatch(removeUser())
-    }
 
     return (
-        <>
-            Home page
-            <button onClick={logout}>Logout</button>
-        </>
+        <div className={'home-page'}>
+            <div className="home-container">
+                <Sidebar/>
+            </div>
+        </div>
     )
 }
