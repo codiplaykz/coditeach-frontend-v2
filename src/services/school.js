@@ -1,10 +1,9 @@
-import axiosInstance from '../helpers/axiosInstance';
+import axiosInstance from './axiosInstance';
 
 // Create school
 export const createSchool = (data) => {
 	const url = '/api/v1/school/create';
-	const body = data;
-	return axiosInstance.post(url, body)
+	return axiosInstance.post(url, data)
 		.then(response => { return response.data; });
 };
 

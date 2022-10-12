@@ -1,10 +1,9 @@
-import axiosInstance from '../helpers/axiosInstance';
+import axiosInstance from './axiosInstance';
 
 // SIGN UP
 export const sign_up = (data) => {
 	const url = '/api/v1/auth/sign_up';
-	const body = data;
-	return axiosInstance.post(url, body)
+	return axiosInstance.post(url, data)
 		.then(response => { return response.data; })
 		.catch(err => console.log(`Sign up error: ${err.response}`));
 };
@@ -12,9 +11,8 @@ export const sign_up = (data) => {
 // SIGN IN
 export const sign_in = (data) => {
 	const url = '/api/v1/auth/sign_in';
-	let body = data;
-	return axiosInstance.post(url, body)
-		.then(response => { return response.data; });
+	return axiosInstance.post(url, data)
+		.then(response => { return response.data })
 };
 
 // REFRESH TOKENS
@@ -26,3 +24,4 @@ export const refreshTokens = () => {
 	return axiosInstance.post(url, data)
 		.then(response => { return response.data; });
 };
+

@@ -1,6 +1,125 @@
-@use '../assets/fonts/fonts';
+@import '../assets/fonts/Montserrat/stylesheet.scss';
+@import '../assets/fonts/Inter/stylesheet';
+@import '../assets/fonts/Nunito/stylesheet.scss';
+@import '../assets/fonts/Raleway/stylesheet.scss';
+@import 'colors';
 
 * {
-  font-family: Inter;
-  font-weight: 400;
+  font-family: Raleway sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.loader {
+  svg {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.login-page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../assets/images/background.jpg');
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+
+  .login-container {
+    background: $white;
+    height: 100vh;
+    width: 35%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    .login-logo {
+      position: absolute;
+      left: 50px;
+      top: 0;
+    }
+
+    .login-inner-container {
+      display: block;
+      width: 60%;
+
+      .login-error {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        background: rgba($error, 0.2);
+        font-weight: bold;
+        color: $error;
+        border-radius: 5px;
+
+        svg {
+          margin-right: 10px;
+        }
+      }
+
+      .login-text {
+        margin: 20px 0 50px;
+        font-size: 1.2em;
+        color: $gray5;
+      }
+
+      .login-title {
+        font-size: 3em;
+        font-weight: 600;
+      }
+
+      .login-forgot-pass-text {
+        text-align: right;
+        font-weight: bold;
+        text-decoration: underline;
+        font-size: 1.2em;
+        margin: 15px 0;
+      }
+
+      .login-input {
+        font-size: 1.2em;
+        display: block;
+        margin: 20px 0;
+        padding: 15px 5px;
+        border: none;
+        border-bottom: solid $gray3 2.5px;
+        outline: none;
+        width: 100%;
+        font-weight: 500;
+
+        &:focus {
+          border-bottom-color: $primary;
+          transition: all ease-in-out 300ms;
+        }
+      }
+
+      .login-button {
+        margin: 50px 0;
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        text-align: center;
+        padding: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $white;
+        background: $secondary;
+        cursor: pointer;
+        transition: all ease-in-out 300ms;
+
+        &:hover {
+          background: rgba($secondary, 0.8);
+          transition: all ease-in-out 300ms;
+        }
+      }
+    }
+  }
 }

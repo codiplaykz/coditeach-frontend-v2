@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
 
 export function useAuth() {
-    const {email} = useSelector(state => state.user)
+    const {user} = useSelector(state => state)
 
-    return email
+    return user?.userData
 }

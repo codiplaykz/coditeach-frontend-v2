@@ -1,9 +1,8 @@
 import axios from 'axios';
 import {env} from "../constants";
-import {refreshTokens} from "../services/auth";
+import {refreshTokens} from "./auth";
 
-const baseUrl = env.prod_start_point;
-const axiosInstance = axios.create({ baseURL: baseUrl });
+const axiosInstance = axios.create({ baseURL: env.prod_start_point });
 
 axiosInstance.interceptors.request.use(async (config) => {
 	const token = await localStorage.getItem('accessToken');
@@ -24,6 +23,8 @@ axiosInstance.interceptors.response.use(function (response) {
 			localStorage.setItem('refreshToken"', res?.refreshToken);
 		});
 	}
+
+	return Promise.reject(error)
 });
 
 export default axiosInstance;
