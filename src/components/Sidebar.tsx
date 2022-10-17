@@ -2,11 +2,12 @@
 import logo from '../assets/codiplay_logo.svg';
 // @ts-ignore
 import avatar from '../assets/images/avatar.svg';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from '../helpers/icon';
 import {useAuth} from '../hooks/use-auth';
 import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice";
+import {useLocation} from "react-router-dom";
 
 export default function Sidebar() {
     const adminItems = [
@@ -54,10 +55,18 @@ export default function Sidebar() {
     const [activeItem, setActiveItem] = useState(0)
     const user = useAuth()
     const dispatch = useDispatch()
+    const {pathname} = useLocation()
 
     const logout = () => {
         dispatch(removeUser())
+
     }
+
+    useEffect(()=>{
+        if (pathname === '/') {
+            setActiveItem(-1)
+        }
+    },[pathname])
 
     const renderedSidebarItems = () => {
         // TODO CHECK FOR USER ROLE

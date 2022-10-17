@@ -1,8 +1,19 @@
 import Icon from "../helpers/icon";
 // @ts-ignore
 import defaultAvatar from '../assets/images/avatar.svg';
+import {useEffect, useState} from "react";
+import {getAllStudents} from "../services/statistics";
+
+interface StudentsResponse {
+    students: [
+        {
+            name: string,
+        }
+    ]
+}
 
 export default function HomePage() {
+    const [students, setStudents] = useState<StudentsResponse>()
     const cities = [
         {
             name: "Все города",
@@ -49,12 +60,12 @@ export default function HomePage() {
             name: "10А",
         }
     ]
-    const students = [
-        {
-            name: "Тест",
-            class: "10A"
-        },
-    ]
+
+    useEffect(() => {
+        getAllStudents().then(res => {
+            console.log(res)
+        })
+    }, [students])
 
     const renderedCitiesItem = () => {
         return (
@@ -84,26 +95,27 @@ export default function HomePage() {
         )
     }
 
-    const renderedStudentsItem = () => {
-        return (
-            students.map((item, index)=>{
-                return (
-                    <div className="student-item" key={`${index}-student`}>
-                        <div className="student-profile-image">
-                            <img src={defaultAvatar} alt="profile-image"/>
-                        </div>
-                        <div className="student-info">
-                            <p className="student-name">{item.name}</p>
-                            <p className="student-class">ученик из {item.class}</p>
-                        </div>
-                        <div className="action-button">
-                            <Icon color={'#C2C2C2'} size={1} name={'More'}/>
-                        </div>
-                    </div>
-                )
-            })
-        )
-    }
+    {/*const renderedStudentsItem = () => {*/}
+    {/*    return (*/}
+    //         // @ts-ignore
+    //         students.map((item, index)=>{
+    //             return (
+    //                 <div className="student-item" key={`${index}-student`}>
+    //                     <div className="student-profile-image">
+    //                         <img src={defaultAvatar} alt="profile-image"/>
+    //                     </div>
+    {/*                    <div className="student-info">*/}
+    //                         <p className="student-name">{item?.name}</p>
+    //                         <p className="student-class">ученик из {item?.class}</p>
+    //                     </div>
+    //                     <div className="action-button">
+    //                         <Icon color={'#C2C2C2'} size={1} name={'More'}/>
+    //                     </div>
+    //                 </div>
+    //             )
+    //         })
+    //     )
+    // }
 
     return (
         <div className={'home-page'}>
@@ -164,7 +176,7 @@ export default function HomePage() {
                             <input placeholder={"Поиск"}/>
                         </div>
                         <div className="students-list">
-                            {renderedStudentsItem()}
+                            {/*{renderedStudentsItem()}*/}
                         </div>
                     </div>
                 </div>
