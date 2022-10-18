@@ -2,18 +2,12 @@ import Icon from "../helpers/icon";
 // @ts-ignore
 import defaultAvatar from '../assets/images/avatar.svg';
 import {useEffect, useState} from "react";
-import {getAllStudents} from "../services/statistics";
+import {getAllStudents, getAllTeachers} from "../services/statistics";
 
-interface StudentsResponse {
-    students: [
-        {
-            name: string,
-        }
-    ]
-}
 
 export default function HomePage() {
-    const [students, setStudents] = useState<StudentsResponse>()
+    const [students, setStudents] = useState([])
+    const [teachers, setTeachers] = useState([])
     const cities = [
         {
             name: "Все города",
@@ -63,13 +57,16 @@ export default function HomePage() {
 
     useEffect(() => {
         getAllStudents().then(res => {
-            console.log(res)
+            setStudents(res)
+        })
+        getAllTeachers().then(res => {
+            setTeachers(res)
         })
     }, [students])
 
     const renderedCitiesItem = () => {
         return (
-            cities.map((item, index)=>{
+            cities.map((item, index) => {
                 return (
                     <div className="cities-item" key={`${index}-city`}>
                         {item.name}
@@ -85,7 +82,7 @@ export default function HomePage() {
 
     const renderedClassesItem = () => {
         return (
-            classes.map((item, index)=>{
+            classes.map((item, index) => {
                 return (
                     <div className="class-item" key={`${index}-class`}>
                         {item.name}
@@ -95,27 +92,24 @@ export default function HomePage() {
         )
     }
 
-    {/*const renderedStudentsItem = () => {*/}
-    {/*    return (*/}
-    //         // @ts-ignore
-    //         students.map((item, index)=>{
-    //             return (
-    //                 <div className="student-item" key={`${index}-student`}>
-    //                     <div className="student-profile-image">
-    //                         <img src={defaultAvatar} alt="profile-image"/>
-    //                     </div>
-    {/*                    <div className="student-info">*/}
-    //                         <p className="student-name">{item?.name}</p>
-    //                         <p className="student-class">ученик из {item?.class}</p>
-    //                     </div>
-    //                     <div className="action-button">
-    //                         <Icon color={'#C2C2C2'} size={1} name={'More'}/>
-    //                     </div>
-    //                 </div>
-    //             )
-    //         })
-    //     )
-    // }
+    const renderedStudentsItem = students.map((item, index) => {
+        return (
+            <div className="student-item" key={`${index}-student`}>
+                <div className="student-profile-image">
+                    <img src={defaultAvatar} alt="profile-image"/>
+                </div>
+                <div className="student-info">
+                    {/*@ts-ignore*/}
+                    <p className="student-name">{item?.name}</p>
+                    {/*@ts-ignore*/}
+                    <p className="student-class">ученик из {item?.class}</p>
+                </div>
+                <div className="action-button">
+                    <Icon color={'#C2C2C2'} size={1} name={'More'}/>
+                </div>
+            </div>
+        )
+    })
 
     return (
         <div className={'home-page'}>
@@ -127,7 +121,7 @@ export default function HomePage() {
                     <div className="home-statistics">
                         <div className="home-statistics-item">
                             <div className="statistics-info">
-                                <p className="statistics-num">421 333</p>
+                                <p className="statistics-num">{students.length}</p>
                                 <p className="statistics-text">учеников</p>
                             </div>
                             <div className="statistics-icon">
@@ -136,8 +130,8 @@ export default function HomePage() {
                         </div>
                         <div className="home-statistics-item">
                             <div className="statistics-info">
-                                <p className="statistics-num">421 333</p>
-                                <p className="statistics-text">учеников</p>
+                                <p className="statistics-num">{teachers.length}</p>
+                                <p className="statistics-text">учителей</p>
                             </div>
                             <div className="statistics-icon">
                                 <Icon color={"white"} size={1} name={'Student'}/>
@@ -145,8 +139,8 @@ export default function HomePage() {
                         </div>
                         <div className="home-statistics-item">
                             <div className="statistics-info">
-                                <p className="statistics-num">421 333</p>
-                                <p className="statistics-text">учеников</p>
+                                <p className="statistics-num">0</p>
+                                <p className="statistics-text">принятых дз</p>
                             </div>
                             <div className="statistics-icon">
                                 <Icon color={"white"} size={1} name={'Student'}/>
@@ -176,7 +170,13 @@ export default function HomePage() {
                             <input placeholder={"Поиск"}/>
                         </div>
                         <div className="students-list">
-                            {/*{renderedStudentsItem()}*/}
+                            {renderedStudentsItem.length === 0 ? (
+                                <p className={'not-exist'}>
+                                    Пока что нету учеников.
+                                </p>
+                            ) : (
+                                <>{renderedStudentsItem}</>
+                            )}
                         </div>
                     </div>
                 </div>

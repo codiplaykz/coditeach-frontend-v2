@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use(function (response) {
 		} else {
 			refreshTokens().then(res => {
 				localStorage.setItem('accessToken', res?.accessToken);
-				localStorage.setItem('refreshToken"', res?.refreshToken);
+				localStorage.setItem('refreshToken', res?.refreshToken);
 			}).catch( () => {
 				store.dispatch(removeUser())
 			});

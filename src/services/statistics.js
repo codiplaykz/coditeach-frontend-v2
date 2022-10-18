@@ -6,3 +6,9 @@ export const getAllStudents = () => {
     return axiosInstance.get(url)
         .then(response => { return response.data; });
 };
+
+export const getAllTeachers = () => {
+    const url = '/api/v1/admin/getAll/teachers';
+    return axiosInstance.get(url)
+        .then(response => { return response.data; });
+};
