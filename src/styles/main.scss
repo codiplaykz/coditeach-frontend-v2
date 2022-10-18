@@ -68,7 +68,7 @@
       .login-text {
         margin: 20px 0 50px;
         font-size: 1.2em;
-        color: $gray5;
+        color: $gray;
       }
 
       .login-title {
@@ -90,7 +90,7 @@
         margin: 20px 0;
         padding: 15px 5px;
         border: none;
-        border-bottom: solid $gray3 2.5px;
+        border-bottom: solid $gray_medium_light 2.5px;
         outline: none;
         width: 100%;
         font-weight: 500;
@@ -125,6 +125,8 @@
 }
 
 .sidebar-container {
+  top: 0;
+  left: 0;
   position: fixed;
   width: 10vw;
   height: 100vh;
@@ -133,6 +135,7 @@
   grid-template-rows: 10vh 60vh 25vh;
 
   .sidebar-header {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: start;
@@ -146,7 +149,7 @@
     .sidebar-item {
       display: flex;
       align-items: center;
-      color: $gray3;
+      color: $gray_medium_light;
       font-weight: bold;
       font-size: 1.2em;
       padding: 10px 15px;
@@ -188,7 +191,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 50%;
-      border: 10px solid $gray1;
+      border: 10px solid $gray_light_extra;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -208,7 +211,7 @@
     }
 
     .sidebar-email {
-      color: $gray3;
+      color: $gray_medium_light;
     }
 
     .sidebar-icons {
@@ -244,7 +247,7 @@
 
         .home-statistics-item {
           padding: 24px;
-          border: 2px solid $gray1;
+          border: 2px solid $gray_light_extra;
           border-radius: 20px;
           display: flex;
           align-items: center;
@@ -265,7 +268,7 @@
             .statistics-text {
               margin-top: 10px;
               font-size: 16px;
-              color: $gray5;
+              color: $gray;
             }
           }
 
@@ -283,7 +286,7 @@
 
       .home-schools {
         padding: 24px;
-        border: 2px solid $gray1;
+        border: 2px solid $gray_light_extra;
         border-radius: 20px;
 
         .schools-title {
@@ -303,7 +306,7 @@
             margin: 8px 0;
             font-size: 16px;
             font-weight: bold;
-            border: solid 2px $gray1;
+            border: solid 2px $gray_light_extra;
             border-radius: 15px;
             transition: all ease-in-out 300ms;
 
@@ -344,7 +347,7 @@
           .class-item{
             padding: 10px 16px;
             border-radius: 15px;
-            background: $gray1;
+            background: $gray_light_extra;
             font-weight: bold;
             font-size: 14px;
           }
@@ -352,7 +355,7 @@
         .class-search {
           padding: 12px 24px;
           border-radius: 15px;
-          border: 2px solid $gray2;
+          border: 2px solid $gray_light;
           display: flex;
           align-items: center;
 
@@ -378,7 +381,7 @@
               position: relative;
               overflow: hidden;
               border-radius: 50%;
-              border: 10px solid $gray1;
+              border: 10px solid $gray_light_extra;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -397,7 +400,7 @@
               }
               .student-class {
                 margin-top: 12px;
-                color: $gray4;
+                color: $gray_medium;
                 font-weight: 400;
                 font-size: 14px;
               }
@@ -413,5 +416,279 @@
   font-weight: bold;
   text-align: center;
   margin: 20px 0;
-  color: $gray4;
+  color: $gray_medium;
+}
+
+.go-back-button {
+  display: flex;
+  cursor: pointer;
+  gap: 10px;
+  align-items: center;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  color: $primary;
+  font-size: 14px;
+  outline: none;
+}
+
+.projects-page {
+  margin: 48px 0 0 15vw;
+  display: grid;
+  grid-template-columns: 25% 65%;
+  gap: 24px;
+
+  .projects-list {
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      margin: 24px 0;
+    }
+
+    .types-tabs {
+      position: relative;
+      display: flex;
+
+      .type-tab {
+        cursor: pointer;
+        padding-bottom: 12px;
+        border-right: none;
+        border-top: none;
+        border-left: none;
+        border-bottom: 1px solid $gray_light_extra;
+        background: transparent;
+        color: $gray_medium_light;
+        font-weight: bold;
+        font-size: 14px;
+        padding-right: 12px;
+        padding-left: 12px;
+        transition: all linear 300ms;
+      }
+
+      .active {
+        color: $primary;
+        border-bottom: 1px solid $primary;
+        transition: all linear 300ms;
+      }
+    }
+
+    .create-project-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 15px;
+      background: $primary;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 0;
+      margin: 36px 0 12px;
+      transition: all ease-in-out 300ms;
+      width: 100%;
+
+      &:hover {
+        background: $secondary;
+        transition: all ease-in-out 300ms;
+      }
+    }
+
+    .project-item {
+      margin: 12px 0;
+      cursor: pointer;
+      border: white 2px solid;
+      border-radius: 15px;
+      padding: 12px;
+      transition: all ease-in-out 200ms;
+
+      .inner {
+        display: grid;
+        grid-template-columns: 90px calc(calc(100% - 90px) - 44px) 10px;
+        gap: 12px;
+        margin-bottom: 8px;
+
+        .project-name {
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        .project-category {
+          font-size: 12px;
+          color: $gray_medium_light;
+          margin-bottom: 8px;
+        }
+
+        .project-type, .project-duration {
+          color: $primary;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        
+        .img-container {
+          width: 90px;
+          height: 90px;
+          border-radius: 15px;
+          overflow: hidden;
+
+          img {
+            height: 90px;
+          }
+        }
+      }
+
+      .project-status-closed {
+        display: inline-block;
+        border-radius: 10px;
+        font-size: 12px;
+        padding: 4px 8px;
+        background: $gray_light;
+      }
+
+      &:hover {
+        border: 2px solid $primary;
+        transition: all ease-in-out 200ms;
+      }
+    }
+  }
+
+  .project-container {
+    max-width: 900px;
+
+    @mixin project-info-template {
+      padding: 48px;
+      border: 2px solid $gray_light_extra;
+      border-radius: 15px;
+      margin-bottom: 24px;
+
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 24px;
+      }
+    }
+
+    .project-info {
+      @include project-info-template;
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+
+        .project-type {
+          color: $gray_medium_light;
+          font-size: 12px;
+        }
+
+        .project-name {
+          font-size: 24px;
+          font-weight: bold;
+          margin: 12px 0;
+        }
+
+        .project-level {
+          padding: 8px;
+          background: rgba($primary, 0.1);
+          border-radius: 15px;
+          color: $primary;
+          font-size: 12px;
+          display: inline-block;
+        }
+
+        .project-status-closed {
+          padding: 8px;
+          background: $gray_light;
+          border-radius: 15px;
+          margin-left: 8px;
+          font-size: 12px;
+          display: inline-block;
+        }
+
+        .project-buttons {
+
+          .project-button {
+            display: inline-block;
+            border-radius: 15px;
+            padding: 8px;
+            background: $gray_light_extra;
+            margin-right: 8px;
+          }
+        }
+      }
+
+      .project-description {
+
+        .scheme-image {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 24px 0;
+
+          img {
+            height: 300px;
+          }
+        }
+
+        p {
+          font-weight: 400;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .project-duration {
+      @include project-info-template;
+    }
+
+    .project-details {
+      @include project-info-template;
+
+      .list {
+        padding: 0 24px;
+        li {
+          margin: 12px 0;
+        }
+      }
+    }
+
+    .project-box-link {
+      @include project-info-template;
+
+      .link {
+        a {
+          color: $primary;
+        }
+        color: $gray_medium_light;
+      }
+    }
+
+    .project-code {
+      @include project-info-template;
+
+      .link {
+        a {
+          color: $primary;
+        }
+        color: $gray_medium_light;
+      }
+
+      code {
+        display: block;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 15px;
+        border: $primary solid 2px;
+        font-size: 16px;
+        font-family: monospace;
+      }
+    }
+  }
+}
+
+.divider {
+  border: 1px solid $gray_light_extra;
 }

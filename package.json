@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/parser": "^7.19.4",
+    "@headlessui/react": "^1.7.3",
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -12,7 +14,11 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "axios": "^1.1.2",
+    "code-prettify": "^0.1.0",
+    "firebase-tools": "^11.15.0",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
+    "react-code-prettify": "^0.0.1",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
@@ -22,6 +28,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "deploy": "react-scripts build && firebase deploy",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

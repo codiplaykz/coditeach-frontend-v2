@@ -7,7 +7,7 @@ import Icon from '../helpers/icon';
 import {useAuth} from '../hooks/use-auth';
 import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 export default function Sidebar() {
     const adminItems = [
@@ -24,7 +24,7 @@ export default function Sidebar() {
         {
             iconName: 'Project',
             title: 'Проекты',
-            link: ''
+            link: '/projects'
         },
         {
             iconName: 'Test',
@@ -56,24 +56,30 @@ export default function Sidebar() {
     const user = useAuth()
     const dispatch = useDispatch()
     const {pathname} = useLocation()
+    const navigate = useNavigate()
 
     const logout = () => {
         dispatch(removeUser())
-
     }
 
     useEffect(()=>{
         if (pathname === '/') {
             setActiveItem(-1)
+        } else if (pathname === '/projects') {
+            setActiveItem(2)
         }
     },[pathname])
+
+    const redirect = (path: string) => {
+        navigate(path)
+    }
 
     const renderedSidebarItems = () => {
         // TODO CHECK FOR USER ROLE
         return (
             adminItems.map((item, index)=> {
                 return (
-                    <div key={`${index}-link`} onClick={() => {setActiveItem(index)}} className={`${index === activeItem ? 'sidebar-item-active' : ''} sidebar-item`}>
+                    <div key={`${index}-link`} onClick={() => {redirect(item.link)}} className={`${index === activeItem ? 'sidebar-item-active' : ''} sidebar-item`}>
                         {/*@ts-ignore*/}
                         <Icon color={'#C2C2C2'} size={1} name={item.iconName}/>
                         {item.title}
@@ -85,7 +91,7 @@ export default function Sidebar() {
 
     return (
         <div className='sidebar-container'>
-            <div className='sidebar-header'>
+            <div className='sidebar-header' onClick={()=>{redirect('/')}}>
                 <img src={logo} alt='logo'/>
                 <Icon color={'#C2C2C2'} size={1} name={'Notification'}/>
             </div>
