@@ -3,7 +3,7 @@ import logo from '../assets/codiplay_logo.svg';
 // @ts-ignore
 import avatar from '../assets/images/avatar.svg';
 import React, {useEffect, useState} from 'react';
-import Icon from '../helpers/icon';
+import Icon from '../helpers/Icon';
 import {useAuth} from '../hooks/use-auth';
 import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice";

@@ -31,7 +31,7 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
-export default function Code ({sourceCode}: CodeProps) {
+export default function SourceCodeSection ({sourceCode}: CodeProps) {
     return (
         <Highlight {...defaultProps} theme={theme} code={sourceCode} language="jsx">
             {({ className, style, tokens, getLineProps, getTokenProps }) => (

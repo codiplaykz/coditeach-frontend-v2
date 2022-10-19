@@ -1,4 +1,4 @@
-import Icon from "../helpers/icon";
+import Icon from "../helpers/Icon";
 // @ts-ignore
 import defaultAvatar from '../assets/images/avatar.svg';
 import {useEffect, useState} from "react";

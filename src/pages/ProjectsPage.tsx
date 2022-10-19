@@ -1,17 +1,22 @@
-import Icon from "../helpers/icon";
+import Icon from "../helpers/Icon";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import Code from "../helpers/code";
+import Code from "../components/SourceCodeSection";
+import SourceCodeSection from "../components/SourceCodeSection";
+import CreateProjectModal from "../components/CreateProjectModal";
 
 export default function ProjectsPage() {
     const [activeTab, setActiveTab] = useState(0)
+    const [createProjectModalShow, setCreateProjectModalShow] = useState(false)
     const categories = ['Все', 'Lifestyle', 'SmartCity',  'Game', 'Robotics']
     const navigate = useNavigate()
 
     const renderedTabs = categories.map((item, index) => {
         return (
             <>
-                <button className={`type-tab ${activeTab === index && 'active'}`} onClick={()=>{setActiveTab(index)}}>
+                <button key={`project-type-${index}`}
+                        className={`type-tab ${activeTab === index && 'active'}`}
+                        onClick={()=>{setActiveTab(index)}}>
                     {item}
                 </button>
             </>
@@ -34,9 +39,9 @@ export default function ProjectsPage() {
       }
     }`
 
-    // @ts-ignore
     return (
         <div className="projects-page">
+            <CreateProjectModal open={createProjectModalShow} setOpen={setCreateProjectModalShow}/>
             <div className="projects-list">
                 <button className="go-back-button" onClick={()=>{redirect('/')}}>
                     <Icon color={"#4CA0FC"} size={1} name={"Back"}/>
@@ -51,7 +56,7 @@ export default function ProjectsPage() {
                     {renderedTabs}
                 </div>
                 
-                <button className="create-project-button">
+                <button className="create-project-button" onClick={()=>setCreateProjectModalShow(true)}>
                     <Icon color={"white"} size={1} name={"Add"}/>
                     Создать проект
                 </button>
@@ -161,7 +166,7 @@ export default function ProjectsPage() {
                         <Icon color={"#4CA0FC"} size={1} name={"Code"}/>
                         Исходный код проекта
                     </p>
-                    <Code sourceCode={codeString}/>
+                    <SourceCodeSection sourceCode={codeString}/>
 
                 </div>
             </div>

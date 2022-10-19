@@ -435,10 +435,10 @@
 .projects-page {
   margin: 48px 0 0 15vw;
   display: grid;
-  grid-template-columns: 25% 65%;
   gap: 24px;
 
   .projects-list {
+    position: fixed;
     .title {
       font-weight: bold;
       font-size: 20px;
@@ -556,6 +556,7 @@
 
   .project-container {
     max-width: 900px;
+    margin-left: 25%;
 
     @mixin project-info-template {
       padding: 48px;
@@ -675,16 +676,6 @@
         }
         color: $gray_medium_light;
       }
-
-      code {
-        display: block;
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: 15px;
-        border: $primary solid 2px;
-        font-size: 16px;
-        font-family: monospace;
-      }
     }
   }
 }
@@ -692,3 +683,98 @@
 .divider {
   border: 1px solid $gray_light_extra;
 }
+
+.create-project-modal {
+  padding: 24px;
+  padding-bottom: 32px;
+
+  .title {
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .project-type {
+    margin-top: 24px;
+    margin-bottom: 12px;
+
+    .type-title {
+      margin-bottom: 8px;
+    }
+  }
+
+  .project-name {
+    margin-bottom: 12px;
+
+    .name-title {
+      margin-bottom: 8px;
+    }
+  }
+
+  .project-level {
+    margin-bottom: 12px;
+
+    .level-title {
+      margin-bottom: 8px;
+    }
+
+    .levels {
+
+      .level-tab {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 12px;
+        margin-bottom: 12px;
+        padding: 12px 16px;
+        border-radius: 15px;
+        background: $gray_light_extra;
+        border: 2px solid $gray_light_extra;
+        font-weight: bold;
+      }
+
+      .level-tab-active {
+        color: $primary;
+        border: 2px solid $primary;
+        background: white;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 12px;
+  }
+}
+
+.default-input {
+  padding: 12px 24px;
+  border-radius: 15px;
+  font-size: 14px;
+  border: 2px solid $gray_light;
+  outline: none;
+  width: calc(100% - 48px);
+}
+
+.not-active-button {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  background: $gray_light_extra;
+  border-radius: 15px;
+  padding: 14px 0;
+  border: none;
+}
+
+.active-button {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  background: $primary;
+  color: $white;
+  border-radius: 15px;
+  padding: 14px 0;
+  border: none;
+}
+

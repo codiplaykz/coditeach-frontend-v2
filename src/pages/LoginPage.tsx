@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import logo from 'assets/codiplay_logo.svg'
 import Loader from "../components/Loader";
 import {sign_in} from "../services/auth";
-import Icon from "../helpers/icon";
+import Icon from "../helpers/Icon";
 import {useDispatch} from "react-redux";
 import {setUser} from 'store/slices/userSlice';
 import {useNavigate} from "react-router-dom";
