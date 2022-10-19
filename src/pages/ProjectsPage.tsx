@@ -1,7 +1,7 @@
 import Icon from "../helpers/icon";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {prettyFormat} from "@testing-library/react";
+import Code from "../helpers/code";
 
 export default function ProjectsPage() {
     const [activeTab, setActiveTab] = useState(0)
@@ -22,20 +22,17 @@ export default function ProjectsPage() {
         navigate(path)
     }
 
-    const codeString = `using System;
-                        
-                        namespace HelloWorld
-                        {
-                          class Program
-                          {
-                            static void Main(string[] args)
-                            {
-                              Console.WriteLine("Hello World!");    
-                            }
-                          }
-                        }`
-
-    const formattedString = prettyFormat.format(codeString)
+    const codeString = `using System;           
+    namespace HelloWorld
+    {
+      class Program
+      {
+        static void Main(string[] args)
+        {
+          Console.WriteLine("Hello World!");    
+        }
+      }
+    }`
 
     // @ts-ignore
     return (
@@ -164,7 +161,7 @@ export default function ProjectsPage() {
                         <Icon color={"#4CA0FC"} size={1} name={"Code"}/>
                         Исходный код проекта
                     </p>
-
+                    <Code sourceCode={codeString}/>
 
                 </div>
             </div>
