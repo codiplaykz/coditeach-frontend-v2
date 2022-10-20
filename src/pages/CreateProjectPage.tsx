@@ -18,24 +18,24 @@ export default function CreateProjectPage() {
 
     const addComponent = () => {
         if (techComponentValue.length !== 0) {
-            let temp = techComponents
+            let array = [...techComponents, techComponentValue]
             // @ts-ignore
-            temp.push(techComponentValue)
-            setTechComponents(temp)
+            setTechComponents(array)
         }
     }
 
     const removeComponent = (index: number) => {
-        let temp = techComponents
-        temp.splice(index, 1)
-        setTechComponents(temp)
-
+        console.log(index)
+        let array = [...techComponents]
+        array.splice(index, 1)
+        setTechComponents(array)
     }
 
     const openEditProjectModal = () => {
         setProjectModalShow(true)
     }
 
+    // @ts-ignore
     const renderedTechComponents = techComponents.map((item, index) => {
         return (
             <div className={"component"} key={`component-${index}`}>
@@ -137,7 +137,9 @@ export default function CreateProjectPage() {
                                 <Icon color={"white"} size={1} name={"Add"}/>
                                 Добавить компонент
                             </button>
-                            {renderedTechComponents}
+                            <div className="components">
+                                {renderedTechComponents}
+                            </div>
                         </div>
                     </div>
                 </div>

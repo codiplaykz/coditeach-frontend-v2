@@ -926,19 +926,23 @@
           gap: 24px;
         }
 
-        .component {
-          padding: 12px 20px;
-          font-weight: bold;
-          color: $gray;
-          border-radius: 10px;
-          margin: 5px 0;
-          border: $gray_light_extra 2px solid;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+        .components {
+          .component {
+            display: block;
+            padding: 12px 20px;
+            font-weight: bold;
+            color: $gray;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: $gray_light_extra 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all ease-in-out 300ms;
 
-          svg {
-            cursor: pointer;
+            svg {
+              cursor: pointer;
+            }
           }
         }
       }
