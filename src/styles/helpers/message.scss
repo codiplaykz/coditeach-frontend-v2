@@ -1,0 +1,33 @@
+@import "src/styles/colors";
+
+.message-container {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-weight: bold;
+  border-radius: 7px;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &.Warning {
+    background: rgba(#fbbf24, 0.2);
+    color: #fbbf24;
+  }
+
+  &.Error {
+    background: rgba(#f33800, 0.2);
+    color: #f33800;
+  }
+
+  &.Info {
+    background: rgba(#267ce9, 0.2);
+    color: #267ce9;
+  }
+
+  &.Success {
+    background: rgba(#1bc44b, 0.2);
+    color: #1bc44b;
+  }
+}

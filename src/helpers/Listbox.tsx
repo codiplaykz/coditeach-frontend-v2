@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import '../styles/listbox.scss'
+import '../styles/helpers/listbox.scss'
 import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
 
 interface DropdownProps {

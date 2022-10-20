@@ -7,21 +7,25 @@ import Spinner from "../helpers/Spinner";
 import Message from "../helpers/Message";
 import {useNavigate} from "react-router-dom";
 
-interface CreateProjectModalProps {
+interface EditProjectModalProps {
     open: boolean,
-    setOpen: Function
+    setOpen: Function,
+    projectData: {
+        projectName: string,
+        projectType: string,
+        projectLevel: string
+    }
 }
 
-export default function CreateProjectModal({open, setOpen}: CreateProjectModalProps) {
+export default function EditProjectModal({open, setOpen, projectData}: EditProjectModalProps) {
     const projectTypes = ['Lifestyle', 'SmartCity', 'Game', 'Robotics']
     const projectLevels = ['Очень легкий', 'Легкий', 'Средний', 'Сложный', 'Очень сложный']
-    const [projectType, setProjectType] = useState(projectTypes[0])
-    const [projectName, setProjectName] = useState('')
-    const [projectLevel, setProjectLevel] = useState('')
+    const [projectType, setProjectType] = useState(projectData.projectType)
+    const [projectName, setProjectName] = useState(projectData.projectName)
+    const [projectLevel, setProjectLevel] = useState(projectData.projectLevel)
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState(null)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const complete = () => {
         setLoading(true)
@@ -33,14 +37,14 @@ export default function CreateProjectModal({open, setOpen}: CreateProjectModalPr
             setTimeout(()=>{
                 setLoading(false)
                 // @ts-ignore
-                setMessage(<Message messageText={'Проект был создан'} messageType={'Success'}/>)
+                setMessage(<Message messageText={'Данные были изменены!'} messageType={'Success'}/>)
                 dispatch(setProject({projectType, projectName, projectLevel}))
                 setTimeout(()=>{
                     setProjectType('')
                     setProjectName('')
                     setProjectLevel('')
                     setMessage(null)
-                    navigate('/create-project')
+                    setOpen(false)
                 }, 1000)
             }, 1000)
         }
@@ -58,7 +62,7 @@ export default function CreateProjectModal({open, setOpen}: CreateProjectModalPr
     return (
         <Modal open={open} setOpen={setOpen}>
             <div className="create-project-modal">
-                <div className="title">Создание проекта</div>
+                <div className="title">Редактирование проекта</div>
                 {message !== null && message}
                 <div className="project-type">
                     <p className="type-title">
@@ -91,7 +95,7 @@ export default function CreateProjectModal({open, setOpen}: CreateProjectModalPr
                         Отменить
                     </button>
                     <button className="active-button" onClick={complete}>
-                        {loading ? <Spinner color={"white"} size={1}/> : 'Составить программу'}
+                        {loading ? <Spinner color={"white"} size={1}/> : 'Внести изменения'}
                     </button>
                 </div>
             </div>

@@ -446,7 +446,7 @@ const Warning= (props: any, size: number, color="#161616") => {
 
 const Code = (props: any, size: number, color="#161616") => {
     return (
-        <svg id='icon-color' {...props} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-code" width="24" height="24"
+        <svg id='icon-color' {...props} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-code" width={size*24} height={size*24}
              viewBox="0 0 24 24" strokeWidth="1.5" stroke={color} fill="none" strokeLinecap="round"
              strokeLinejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -457,18 +457,45 @@ const Code = (props: any, size: number, color="#161616") => {
     )
 }
 
+const Success = (props: any, size: number, color="#161616") => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-circle-check" width={size*24}
+             height={size*24} viewBox="0 0 24 24" strokeWidth="1.5" stroke={color} fill="none" strokeLinecap="round"
+             strokeLinejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9 12l2 2l4 -4"/>
+        </svg>
+    )
+}
+
+const Error = (props: any, size: number, color="#161616") => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-alert-octagon" width={size*24}
+             height={size*24} viewBox="0 0 24 24" strokeWidth="1.5" stroke={color} fill="none" strokeLinecap="round"
+             strokeLinejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path
+                d="M8.7 3h6.6c.3 0 .5 .1 .7 .3l4.7 4.7c.2 .2 .3 .4 .3 .7v6.6c0 .3 -.1 .5 -.3 .7l-4.7 4.7c-.2 .2 -.4 .3 -.7 .3h-6.6c-.3 0 -.5 -.1 -.7 -.3l-4.7 -4.7c-.2 -.2 -.3 -.4 -.3 -.7v-6.6c0 -.3 .1 -.5 .3 -.7l4.7 -4.7c.2 -.2 .4 -.3 .7 -.3z"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+    )
+}
+
 let IconFunctions = [Add, Notification, Dashboard, Settings, SignOut, Copy, Back, Dropdown, Share, Remove,
     Close, Check, More, Info, Search, Edit, Delete, TechSupport, Help, News, Attachment, Download,
     Upload, Bookmark, StarAccepted, StarNotAccepted, Time, Locked, Unlocked, AddStudents, SignIn, Pointer, Drag,
     Project, Test, Image, AskList, Fail, Location, ChangePassword, Loading, Teachers, TechComponents, Links, Student,
-    Move, Profile, Attendance, Photo, Play, Date, User, Lessons, Filters, Classes, Schools, Warning, Code]
+    Move, Profile, Attendance, Photo, Play, Date, User, Lessons, Filters, Classes, Schools, Warning, Code, Success, Error]
 
 let IconNames = ['Add', 'Notification', 'Dashboard',  'Settings',  'SignOut',  'Copy',  'Back',  'Dropdown',
     'Share',  'Remove',  'Close',  'Check',  'More',  'Info',  'Search',  'Edit',  'Delete',  'TechSupport',
     'Help',  'News',  'Attachment',  'Download',  'Upload',  'Bookmark',  'StarAccepted',  'StarNotAccepted',
     'Time', 'Locked', 'Unlocked', 'AddStudents', 'SignIn', 'Pointer', 'Drag', 'Project', 'Test', 'Image', 'AskList',
     'Fail', 'Location', 'ChangePassword', 'Loading', 'Teachers', 'TechComponents', 'Links', 'Student', 'Move',
-    'Profile', 'Attendance', 'Photo', 'Play', 'Date', 'User', 'Lessons', 'Filters', 'Classes', 'Schools', 'Warning', 'Code']
+    'Profile', 'Attendance', 'Photo', 'Play', 'Date', 'User', 'Lessons', 'Filters', 'Classes', 'Schools', 'Warning',
+    'Code', 'Success', 'Error']
 
 interface IconProps {
     color: string;
@@ -479,7 +506,7 @@ interface IconProps {
         'StarNotAccepted' | 'Time' | 'Locked' | 'Unlocked' | 'AddStudents' | 'SignIn' | 'Pointer' | 'Drag' | 'Project' |
         'Test' | 'Image' | 'AskList' | 'Fail' | 'Location' | 'ChangePassword' | 'Loading' | 'Teachers' | 'TechComponents' |
         'Links' | 'Student' | 'Move' | 'Profile' | 'Attendance' | 'Photo' | 'Play' | 'Date' | 'User' |
-        'Lessons' | 'Filters' | 'Classes' | 'Schools' | 'Warning' | 'Code'
+        'Lessons' | 'Filters' | 'Classes' | 'Schools' | 'Warning' | 'Code' | 'Success' | 'Error'
 }
 
 export default function Icon({color, size, name, ...props}: IconProps) {

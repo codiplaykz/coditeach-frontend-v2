@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./helpers/ProtectedRoute";
 import Sidebar from "./components/Sidebar";
 import ProjectsPage from "./pages/ProjectsPage";
+import CreateProjectPage from "./pages/CreateProjectPage";
 
 function App() {
   return (
@@ -22,6 +23,12 @@ function App() {
                   <ProtectedRoute>
                       <Sidebar/>
                       <ProjectsPage/>
+                  </ProtectedRoute>
+              }/>
+              <Route path={"/create-project"} element={
+                  <ProtectedRoute>
+                      <Sidebar/>
+                      <CreateProjectPage/>
                   </ProtectedRoute>
               }/>
           </Routes>

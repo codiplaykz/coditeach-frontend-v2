@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import Code from "../components/SourceCodeSection";
 import SourceCodeSection from "../components/SourceCodeSection";
 import CreateProjectModal from "../components/CreateProjectModal";
+import GoBackButton from "../components/GoBackButton";
 
 export default function ProjectsPage() {
     const [activeTab, setActiveTab] = useState(0)
@@ -43,10 +44,7 @@ export default function ProjectsPage() {
         <div className="projects-page">
             <CreateProjectModal open={createProjectModalShow} setOpen={setCreateProjectModalShow}/>
             <div className="projects-list">
-                <button className="go-back-button" onClick={()=>{redirect('/')}}>
-                    <Icon color={"#4CA0FC"} size={1} name={"Back"}/>
-                    На главную
-                </button>
+                <GoBackButton path={'/'} title={"На главную"} />
 
                 <p className="title">
                     Общие проекты

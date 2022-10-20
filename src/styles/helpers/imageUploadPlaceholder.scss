@@ -1,0 +1,32 @@
+@import "../colors";
+
+.image-upload-placeholder-container {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: $gray_light_extra;
+
+  .container-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+      margin: 12px 0 0 4px;
+      font-size: 16px;
+      font-weight: normal !important;
+
+      a {
+        color: $primary;
+      }
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: $gray;
+    }
+  }
+}

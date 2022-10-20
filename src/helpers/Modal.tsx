@@ -1,6 +1,6 @@
 import {Dialog, Transition} from '@headlessui/react'
 import {Fragment, ReactElement, useRef} from 'react'
-import '../styles/modal.scss'
+import '../styles/helpers/modal.scss'
 
 interface ModalProps {
     open: boolean,

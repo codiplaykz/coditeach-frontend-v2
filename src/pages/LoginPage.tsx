@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {setUser} from 'store/slices/userSlice';
 import {useNavigate} from "react-router-dom";
 import {useAuth} from '../hooks/use-auth';
+import Message from "../helpers/Message";
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -64,12 +65,7 @@ export default function LoginPage() {
                     <p className={'login-title'}>Вход в систему</p>
                     <p className={'login-text'}>Добро пожаловать обратно в систему! Введите свои данные пожалуйста.</p>
                     {
-                        error && (
-                            <p className="login-error">
-                                <Icon color={"red"} size={1} name={"Warning"}/>
-                                {error}
-                            </p>
-                        )
+                        error && (<Message messageText={error} messageType={'Error'}/>)
                     }
                     <input placeholder={'Почта'} type='email' onChange={event => (setEmail(event.target.value))} required className={'login-input'}/>
                     <input placeholder={'Пароль'} type='password' onChange={event => (setPassword(event.target.value))} required className={'login-input'}/>
