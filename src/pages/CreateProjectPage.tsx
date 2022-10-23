@@ -8,24 +8,37 @@ import ImageUploadPlaceholder from "../helpers/ImageUploadPlaceholder";
 export default function CreateProjectPage() {
     const projectData = useProject()
     const [editProjectModalShow, setProjectModalShow] = useState(false)
-    const [techComponents, setTechComponents] = useState([])
+    const [techComponents, setTechComponents] = useState<{name: string, quantity: number}[]>([])
     const [techComponentValue, setTechComponentValue] = useState('')
+    const [techComponentQuantityValue, setTechComponentQuantityValue] = useState(1)
 
     // @ts-ignore
     const handleTechComponentValueChange = (e) => {
         setTechComponentValue(e.target.value)
     }
 
+    // @ts-ignore
+    const handleTechComponentQuantityValueChange = (e) => {
+        let {value, min, max} = e.target
+        value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+        setTechComponentQuantityValue(value)
+    }
+
     const addComponent = () => {
         if (techComponentValue.length !== 0) {
-            let array = [...techComponents, techComponentValue]
+            let item = {
+                name: techComponentValue,
+                quantity: techComponentQuantityValue
+            }
+            let array = [...techComponents, item]
             // @ts-ignore
             setTechComponents(array)
+            setTechComponentValue('')
+            setTechComponentQuantityValue(1)
         }
     }
 
     const removeComponent = (index: number) => {
-        console.log(index)
         let array = [...techComponents]
         array.splice(index, 1)
         setTechComponents(array)
@@ -39,7 +52,8 @@ export default function CreateProjectPage() {
     const renderedTechComponents = techComponents.map((item, index) => {
         return (
             <div className={"component"} key={`component-${index}`}>
-                <p>{item}</p>
+                <p>{item.name}</p>
+                <span>{item.quantity} шт. </span>
                 {/*@ts-ignore*/}
                 <Icon color={"red"} size={1} name={"Remove"} onClick={()=>removeComponent(index)}/>
             </div>
@@ -133,13 +147,19 @@ export default function CreateProjectPage() {
                                    onChange={(e) => handleTechComponentValueChange(e)}
                                    placeholder={"Введите название компонента"}
                                    className="default-input"/>
+
+                            <input type="number" min="1" max="1000" required value={techComponentQuantityValue}
+                                   onChange={(e) => handleTechComponentQuantityValueChange(e)}
+                                   placeholder={"Введите количество"}
+                                   className="default-input"/>
+
                             <button className="active-button" onClick={addComponent}>
                                 <Icon color={"white"} size={1} name={"Add"}/>
-                                Добавить компонент
                             </button>
-                            <div className="components">
-                                {renderedTechComponents}
-                            </div>
+                        </div>
+
+                        <div className="components">
+                            {renderedTechComponents}
                         </div>
                     </div>
                 </div>

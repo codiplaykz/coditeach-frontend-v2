@@ -512,7 +512,7 @@
           align-items: center;
           gap: 8px;
         }
-        
+
         .img-container {
           width: 90px;
           height: 90px;
@@ -922,13 +922,18 @@
 
         .inputs {
           display: grid;
-          grid-template-columns: 60% 30%;
+          grid-template-columns: calc(60% - 24px) calc(30% - 24px) 10%;
           gap: 24px;
+
+          button {
+            svg {
+              margin-right: 0;
+            }
+          }
         }
 
         .components {
           .component {
-            display: block;
             padding: 12px 20px;
             font-weight: bold;
             color: $gray;
