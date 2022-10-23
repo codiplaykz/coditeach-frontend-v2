@@ -162,6 +162,19 @@ export default function CreateProjectPage() {
                             {renderedTechComponents}
                         </div>
                     </div>
+
+                    <div className="project-additional-details">
+                        <div className="title">
+                            <Icon color={"#4CA0FC"} size={1} name={"Links"}/>
+                            <p>
+                                Ссылка для покупки набора
+                            </p>
+                        </div>
+
+                        <div className="input">
+                            <input type="url" className="default-input" placeholder={"Введите ссылку для покупки набора"}/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

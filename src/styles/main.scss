@@ -672,8 +672,7 @@
 }
 
 .create-project-modal {
-  padding: 24px;
-  padding-bottom: 32px;
+  padding: 24px 0 32px 0;
 
   .title {
     margin-bottom: 24px;
@@ -952,5 +951,29 @@
         }
       }
     }
+  }
+}
+
+.message-modal {
+  padding: 24px;
+
+  .message-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+
+    p {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    svg {
+      margin-right: 24px;
+    }
+  }
+
+  .message-buttons {
+    display: flex;
+    gap: 24px;
   }
 }
