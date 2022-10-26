@@ -8,8 +8,11 @@
   justify-content: center;
   border-radius: 20px;
   background: $gray_light_extra;
+  border: dashed $gray_medium_light 2px;
 
   .container-inner {
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,5 +31,77 @@
       font-size: 14px;
       color: $gray;
     }
+
+    .close-button {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      display: flex;
+      align-items: center;
+      padding: 3px 6px;
+      border-radius: 5px;
+      color: $error;
+      border: $error solid 2px;
+      background: transparent;
+      font-weight: bold;
+      cursor: pointer;
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+
+    .uploaded-image {
+      height: 300px;
+      max-width: 100%;
+    }
+  }
+}
+
+.active-drag {
+  background: rgba($primary, 0.2);
+  border: dashed $primary 2px;
+  transition: all linear 300ms;
+}
+
+.uploaded-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: $gray_light_extra 2px solid;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+
+  .inner {
+    display: flex;
+    align-items: center;
+
+    svg {
+      border: $gray_light solid 2px;
+      border-radius: 10px;
+      margin-right: 15px;
+    }
+  }
+
+  .file-name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .file-type {
+    color: $gray_medium;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .file-size {
+    color: $primary;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+
+  svg {
+    cursor: pointer;
   }
 }

@@ -977,3 +977,34 @@
     gap: 24px;
   }
 }
+
+.confirm-action-modal {
+  padding: 24px;
+
+  .title {
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .info {
+    width: 50%;
+    background: $warning;
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 10px;
+
+    svg {
+      margin-right: 12px;
+    }
+  }
+
+  .confirm-buttons {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 12px;
+  }
+}

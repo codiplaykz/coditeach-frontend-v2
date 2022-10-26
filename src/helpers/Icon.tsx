@@ -483,11 +483,23 @@ const Error = (props: any, size: number, color="#161616") => {
     )
 }
 
+const File = (props: any, size: number, color="#161616") => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-file" width={size*24} height={size*24}
+             viewBox="0 0 24 24" strokeWidth="1.5" stroke={color} fill="none" strokeLinecap="round"
+             strokeLinejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M14 3v4a1 1 0 0 0 1 1h4"/>
+            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/>
+        </svg>
+    )
+}
+
 let IconFunctions = [Add, Notification, Dashboard, Settings, SignOut, Copy, Back, Dropdown, Share, Remove,
     Close, Check, More, Info, Search, Edit, Delete, TechSupport, Help, News, Attachment, Download,
     Upload, Bookmark, StarAccepted, StarNotAccepted, Time, Locked, Unlocked, AddStudents, SignIn, Pointer, Drag,
     Project, Test, Image, AskList, Fail, Location, ChangePassword, Loading, Teachers, TechComponents, Links, Student,
-    Move, Profile, Attendance, Photo, Play, Date, User, Lessons, Filters, Classes, Schools, Warning, Code, Success, Error]
+    Move, Profile, Attendance, Photo, Play, Date, User, Lessons, Filters, Classes, Schools, Warning, Code, Success, Error, File]
 
 let IconNames = ['Add', 'Notification', 'Dashboard',  'Settings',  'SignOut',  'Copy',  'Back',  'Dropdown',
     'Share',  'Remove',  'Close',  'Check',  'More',  'Info',  'Search',  'Edit',  'Delete',  'TechSupport',
@@ -495,7 +507,7 @@ let IconNames = ['Add', 'Notification', 'Dashboard',  'Settings',  'SignOut',  '
     'Time', 'Locked', 'Unlocked', 'AddStudents', 'SignIn', 'Pointer', 'Drag', 'Project', 'Test', 'Image', 'AskList',
     'Fail', 'Location', 'ChangePassword', 'Loading', 'Teachers', 'TechComponents', 'Links', 'Student', 'Move',
     'Profile', 'Attendance', 'Photo', 'Play', 'Date', 'User', 'Lessons', 'Filters', 'Classes', 'Schools', 'Warning',
-    'Code', 'Success', 'Error']
+    'Code', 'Success', 'Error', 'File']
 
 interface IconProps {
     color: string;
@@ -506,7 +518,7 @@ interface IconProps {
         'StarNotAccepted' | 'Time' | 'Locked' | 'Unlocked' | 'AddStudents' | 'SignIn' | 'Pointer' | 'Drag' | 'Project' |
         'Test' | 'Image' | 'AskList' | 'Fail' | 'Location' | 'ChangePassword' | 'Loading' | 'Teachers' | 'TechComponents' |
         'Links' | 'Student' | 'Move' | 'Profile' | 'Attendance' | 'Photo' | 'Play' | 'Date' | 'User' |
-        'Lessons' | 'Filters' | 'Classes' | 'Schools' | 'Warning' | 'Code' | 'Success' | 'Error'
+        'Lessons' | 'Filters' | 'Classes' | 'Schools' | 'Warning' | 'Code' | 'Success' | 'Error' | 'File'
 }
 
 export default function Icon({color, size, name, ...props}: IconProps) {

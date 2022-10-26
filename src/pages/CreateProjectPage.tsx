@@ -4,13 +4,38 @@ import {useProject} from "../hooks/use-project";
 import {useState} from "react";
 import EditProjectModal from "../components/EditProjectModal";
 import ImageUploadPlaceholder from "../helpers/ImageUploadPlaceholder";
+import {useNavigate} from "react-router-dom";
+import ConfirmActionModal from "../components/ConfirmActionModal";
+import {createProject} from "../services/project";
 
 export default function CreateProjectPage() {
     const projectData = useProject()
+    const navigate = useNavigate()
     const [editProjectModalShow, setProjectModalShow] = useState(false)
     const [techComponents, setTechComponents] = useState<{name: string, quantity: number}[]>([])
     const [techComponentValue, setTechComponentValue] = useState('')
     const [techComponentQuantityValue, setTechComponentQuantityValue] = useState(1)
+    const [onClose, setOnClose] = useState(false)
+    const [coverImage, setCoverImage] = useState<File>()
+    const [schemaImage, setSchemaImage] = useState<File>()
+    const [desc, setDesc] = useState('')
+
+    const submitData = () => {
+        let data = new FormData()
+        data.append('name', projectData.projectName)
+        data.append('desc', desc)
+        data.append('p_type', projectData.projectType)
+        data.append('level', projectData.projectLevel)
+        data.append('tech_components', JSON.stringify(techComponents))
+        // @ts-ignore
+        data.append('cover_image', coverImage)
+        // @ts-ignore
+        data.append('schema_image', schemaImage)
+
+        createProject(data).then(res=>{
+            console.log(res)
+        })
+    }
 
     // @ts-ignore
     const handleTechComponentValueChange = (e) => {
@@ -48,6 +73,10 @@ export default function CreateProjectPage() {
         setProjectModalShow(true)
     }
 
+    const redirect = (path: string) => {
+        navigate(path)
+    }
+
     // @ts-ignore
     const renderedTechComponents = techComponents.map((item, index) => {
         return (
@@ -63,14 +92,18 @@ export default function CreateProjectPage() {
     return (
         <div className="create-project-page">
             <EditProjectModal open={editProjectModalShow} setOpen={setProjectModalShow} projectData={projectData}/>
+            <ConfirmActionModal open={onClose} setOpen={setOnClose}
+                                title={"Вы действительно хотите покинуть страницу?"}
+                                info={"Изменения не сохранятся"} confirmAction={()=>{redirect("/projects")}}/>
+
             <GoBackButton title={'К списку проектов'} path={'/projects'}/>
 
             <div className="page-header">
                 <p className="header-title">Создание проекта</p>
 
                 <div className="buttons">
-                    <button className="not-active-button">Отменить</button>
-                    <button className="active-button">Опубликовать для всех</button>
+                    <button className="not-active-button" onClick={()=>{setOnClose(true)}}>Отменить</button>
+                    <button className="active-button" onClick={submitData}>Опубликовать для всех</button>
                 </div>
             </div>
 
@@ -101,14 +134,16 @@ export default function CreateProjectPage() {
                                 <div className="title">
                                     Обложка
                                 </div>
-                                <ImageUploadPlaceholder/>
+                                {/*@ts-ignore*/}
+                                <ImageUploadPlaceholder uploadedImage={coverImage} setUploadedImage={setCoverImage}/>
                             </div>
 
                             <div className="project-scheme-image">
                                 <div className="title">
                                     Cхема
                                 </div>
-                                <ImageUploadPlaceholder/>
+                                {/*@ts-ignore*/}
+                                <ImageUploadPlaceholder uploadedImage={schemaImage} setUploadedImage={setSchemaImage}/>
                             </div>
 
                             <div className="project-description">
@@ -116,7 +151,7 @@ export default function CreateProjectPage() {
                                     Описание
                                 </div>
 
-                                <textarea rows={8} className="default-input"/>
+                                <textarea value={desc} onChange={(e)=>{setDesc(e.target.value)}} rows={8} className="default-input"/>
                             </div>
                         </div>
                     </div>
