@@ -1,40 +1,69 @@
 import GoBackButton from "../components/GoBackButton";
 import Icon from "../helpers/Icon";
 import {useProject} from "../hooks/use-project";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import EditProjectModal from "../components/EditProjectModal";
 import ImageUploadPlaceholder from "../helpers/ImageUploadPlaceholder";
 import {useNavigate} from "react-router-dom";
 import ConfirmActionModal from "../components/ConfirmActionModal";
 import {createProject} from "../services/project";
+import Spinner from "../helpers/Spinner";
+import AlertMessage from "../helpers/AlertMessage";
+import MessageModal from "../components/MessageModal";
 
 export default function CreateProjectPage() {
     const projectData = useProject()
     const navigate = useNavigate()
+    const [onClose, setOnClose] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [editProjectModalShow, setProjectModalShow] = useState(false)
+    const [alertShow, setAlertShow] = useState(false)
+    const [alertType, setAlertType] = useState('')
+    const [alertMessage, setAlertMessage] = useState('')
+    const [status, setStatus] = useState<number>()
+    const [showStatus, setShowStatus] = useState(false)
+
     const [techComponents, setTechComponents] = useState<{name: string, quantity: number}[]>([])
     const [techComponentValue, setTechComponentValue] = useState('')
     const [techComponentQuantityValue, setTechComponentQuantityValue] = useState(1)
-    const [onClose, setOnClose] = useState(false)
     const [coverImage, setCoverImage] = useState<File>()
     const [schemaImage, setSchemaImage] = useState<File>()
+    const [duration, setDuration] = useState<number>(0)
+    const [buyBoxLink, setBuyBoxLink] = useState<string>('')
     const [desc, setDesc] = useState('')
 
     const submitData = () => {
-        let data = new FormData()
-        data.append('name', projectData.projectName)
-        data.append('desc', desc)
-        data.append('p_type', projectData.projectType)
-        data.append('level', projectData.projectLevel)
-        data.append('tech_components', JSON.stringify(techComponents))
-        // @ts-ignore
-        data.append('cover_image', coverImage)
-        // @ts-ignore
-        data.append('schema_image', schemaImage)
+        setLoading(true)
+        if (techComponents.length !== 0 && coverImage !== null && schemaImage !== null && duration !== 0
+            && buyBoxLink !== '' && desc !== '') {
+            let data = new FormData()
+            data.append('name', projectData.projectName)
+            data.append('desc', desc)
+            data.append('duration', ''+duration)
+            data.append('purchase_box_link', ''+buyBoxLink)
+            data.append('p_type', projectData.projectType)
+            data.append('level', projectData.projectLevel)
+            data.append('tech_components', JSON.stringify(techComponents))
+            // @ts-ignore
+            data.append('cover_image', coverImage)
+            // @ts-ignore
+            data.append('schema_image', schemaImage)
 
-        createProject(data).then(res=>{
-            console.log(res)
-        })
+            createProject(data).then(res=>{
+                console.log(res)
+                setStatus(200)
+                setShowStatus(true)
+            }).catch(err=>{
+                console.log(err)
+                setStatus(500)
+                setShowStatus(true)
+            })
+        } else {
+            setAlertShow(true)
+            setAlertType("Info")
+            setAlertMessage("Заполните все поля!")
+            setLoading(false)
+        }
     }
 
     // @ts-ignore
@@ -77,6 +106,12 @@ export default function CreateProjectPage() {
         navigate(path)
     }
 
+    useEffect(()=>{
+        if (projectData.projectLevel === '' || projectData.projectName === '' || projectData.projectName === '') {
+            redirect('/projects')
+        }
+    })
+
     // @ts-ignore
     const renderedTechComponents = techComponents.map((item, index) => {
         return (
@@ -89,12 +124,40 @@ export default function CreateProjectPage() {
         )
     })
 
+    const doneAlertMessage = (<MessageModal type={"ok"}
+                                            title={`Проект успешно создан!`}
+                                            open={showStatus}
+                                            setOpen={setShowStatus}
+                                            secondaryButtonText={"В список проектов"}
+                                            secondaryButtonLink={"/projects"}
+                                            primaryButtonText={"Посмотреть проект"}
+        // TODO PROJECT PAGE
+                                            primaryButtonLink={"/projects/id"}/>)
+
+    const errorAlertMessage = (<MessageModal type={"error"}
+                                            title={`Что-то пошло не так...`}
+                                            open={showStatus}
+                                            setOpen={setShowStatus}
+                                            secondaryButtonText={"Закрыть"}
+                                            secondaryButtonLink={"/projects"}
+                                            primaryButtonText={"Попробовать позже"}
+                                            primaryButtonLink={"/"}/>)
+
     return (
         <div className="create-project-page">
+            {/*@ts-ignore  */}
+            <AlertMessage open={alertShow} setOpen={setAlertShow} messageText={alertMessage} messageType={alertType}/>
             <EditProjectModal open={editProjectModalShow} setOpen={setProjectModalShow} projectData={projectData}/>
             <ConfirmActionModal open={onClose} setOpen={setOnClose}
                                 title={"Вы действительно хотите покинуть страницу?"}
                                 info={"Изменения не сохранятся"} confirmAction={()=>{redirect("/projects")}}/>
+            {
+                status === 200 && doneAlertMessage
+            }
+
+            {
+                status === 500 && errorAlertMessage
+            }
 
             <GoBackButton title={'К списку проектов'} path={'/projects'}/>
 
@@ -103,7 +166,11 @@ export default function CreateProjectPage() {
 
                 <div className="buttons">
                     <button className="not-active-button" onClick={()=>{setOnClose(true)}}>Отменить</button>
-                    <button className="active-button" onClick={submitData}>Опубликовать для всех</button>
+                    <button className="active-button" onClick={submitData}>
+                        {
+                            loading ? <Spinner color={"white"} size={1}/> : 'Опубликовать для всех'
+                        }
+                    </button>
                 </div>
             </div>
 
@@ -165,7 +232,9 @@ export default function CreateProjectPage() {
                         </div>
                         
                         <div className="input">
-                            <input type="time" className="default-input"/>
+                            <input value={duration} onChange={(e)=>{setDuration(+e.target.value)}}
+                                   type="number"
+                                   placeholder={"Количество минут на выполнение"} className="default-input"/>
                         </div>
                     </div>
 
@@ -207,7 +276,8 @@ export default function CreateProjectPage() {
                         </div>
 
                         <div className="input">
-                            <input type="url" className="default-input" placeholder={"Введите ссылку для покупки набора"}/>
+                            <input type="url" value={buyBoxLink} onChange={(e)=>{setBuyBoxLink(e.target.value)}}
+                                   className="default-input" placeholder={"Введите ссылку для покупки набора"}/>
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,9 @@ export default function MessageModal(props: MessageModalProps) {
     const navigate = useNavigate()
 
     const icon = type === 'ok' ? (<Icon color={"#25CD36"} size={3} name={'Success'}/>) :
-        (<Icon color={"#F20000"} size={3} name={'Fail'}/>)
+        // @ts-ignore
+        (<Icon style={{border: "#f20000 2px solid", borderRadius: '50%', padding: '6px'}}
+               color={"#F20000"} size={2} name={'Fail'}/>)
 
     const redirect = (path: string) => {
         navigate(path)
