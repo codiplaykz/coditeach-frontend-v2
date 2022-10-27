@@ -1,11 +1,13 @@
 import Spinner from "../helpers/Spinner";
 import Icon from "../helpers/Icon";
+import {useNavigate} from "react-router-dom";
 
 interface ProjectsListProps {
-    projects: {name: string, cover_img_url: string, type: string, duration: number}[]
+    projects: {id: number, name: string, cover_img_url: string, type: string, duration: number}[]
 }
 
 export default function ProjectsList({projects}: ProjectsListProps) {
+    const navigate = useNavigate()
 
     if (projects.length === 0) {
         return (
@@ -20,9 +22,13 @@ export default function ProjectsList({projects}: ProjectsListProps) {
         )
     }
 
+    const redirect = (path: string) => {
+        navigate(path,{replace: true})
+    }
+
     const renderedProjects = projects.map((project, index) => {
         return (
-            <div key={`${index}-project-list-item`}>
+            <div key={`${index}-project-list-item`} onClick={()=>{redirect(`/projects/${project.id}`)}}>
                 <div className="project-item">
                     <div className="inner">
                         <div className="img-container">
