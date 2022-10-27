@@ -25,6 +25,12 @@ function App() {
                       <ProjectsPage/>
                   </ProtectedRoute>
               }/>
+              <Route path={"/projects/:id"} element={
+                  <ProtectedRoute>
+                      <Sidebar/>
+                      <ProjectsPage/>
+                  </ProtectedRoute>
+              }/>
               <Route path={"/create-project"} element={
                   <ProtectedRoute>
                       <Sidebar/>

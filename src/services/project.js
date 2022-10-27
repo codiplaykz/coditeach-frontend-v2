@@ -9,3 +9,9 @@ export const createProject = (data) => {
     })
         .then(response => { return response.data; });
 };
+
+export const getAllProjects = () => {
+    const url = '/api/v1/project/getAll';
+    return axiosInstance.get(url)
+        .then(response => { return response.data; });
+};

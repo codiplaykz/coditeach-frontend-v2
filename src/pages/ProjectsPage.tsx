@@ -1,16 +1,29 @@
 import Icon from "../helpers/Icon";
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import Code from "../components/SourceCodeSection";
 import SourceCodeSection from "../components/SourceCodeSection";
 import CreateProjectModal from "../components/CreateProjectModal";
 import GoBackButton from "../components/GoBackButton";
+import ProjectsList from "../components/ProjectsList";
+import {getAllProjects} from "../services/project";
 
 export default function ProjectsPage() {
     const [activeTab, setActiveTab] = useState(0)
     const [createProjectModalShow, setCreateProjectModalShow] = useState(false)
+    const [projects, setProjects] = useState()
     const categories = ['Все', 'Lifestyle', 'SmartCity',  'Game', 'Robotics']
     const navigate = useNavigate()
+    const {id} = useParams()
+
+    useEffect(()=>{
+        if (!projects) {
+            getAllProjects().then(res=>{
+                console.log(res)
+                setProjects(res)
+            })
+        }
+    }, [projects])
 
     const renderedTabs = categories.map((item, index) => {
         return (
@@ -60,34 +73,7 @@ export default function ProjectsPage() {
                 </button>
 
                 <div className="list">
-                    <div className="project-item">
-                        <div className="inner">
-                            <div className="img-container">
-                                <img src="https://images.unsplash.com/photo-1603732551658-5fabbafa84eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXJkdWlub3xlbnwwfHwwfHw%3D&w=1000&q=80" alt=""/>
-                            </div>
-                            <div>
-                                <p className="project-name">
-                                    Светофор
-                                </p>
-                                <p className="project-category">
-                                    Общие проекты
-                                </p>
-                                <div className="project-type">
-                                    <Icon color={"#4CA0FC"} size={1} name={"Project"}/>
-                                    Lifestyle
-                                </div>
-                                <div className="project-duration">
-                                    <Icon color={"#4CA0FC"} size={1} name={"Time"}/>
-                                    30 мин
-                                </div>
-                            </div>
-                            <Icon color={"#C2C2C2"} size={1} name={"More"}/>
-                        </div>
-                        <div className="project-status-closed">
-                            Доступ закрыт
-                        </div>
-                    </div>
-                    <hr className="divider"/>
+                    <ProjectsList projects={projects ?? []}/>
                 </div>
             </div>
             <div className="project-container">

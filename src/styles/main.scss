@@ -10,6 +10,16 @@
   margin: 0;
 }
 
+@mixin centeredItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+  @include centeredItem;
+}
+
 .loader {
   svg {
     animation: spin 1s linear infinite;
