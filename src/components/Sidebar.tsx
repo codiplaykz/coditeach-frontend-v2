@@ -7,7 +7,7 @@ import Icon from '../helpers/Icon';
 import {useAuth} from '../hooks/use-auth';
 import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 
 export default function Sidebar() {
     const adminItems = [
@@ -90,7 +90,8 @@ export default function Sidebar() {
     }
 
     return (
-        <div className='sidebar-container'>
+        <>
+            <div className='sidebar-container'>
             <div className='sidebar-header' onClick={()=>{redirect('/')}}>
                 <img src={logo} alt='logo'/>
                 <Icon color={'#C2C2C2'} size={1} name={'Notification'}/>
@@ -115,5 +116,7 @@ export default function Sidebar() {
                 </div>
             </div>
         </div>
+            <Outlet/>
+        </>
     )
 }

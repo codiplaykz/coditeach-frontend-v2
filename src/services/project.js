@@ -15,3 +15,9 @@ export const getAllProjects = () => {
     return axiosInstance.get(url)
         .then(response => { return response.data; });
 };
+
+export const getProjectById = (id) => {
+    const url = `/api/v1/project/get?id=${id}`;
+    return axiosInstance.get(url)
+        .then(response => { return response.data; });
+}

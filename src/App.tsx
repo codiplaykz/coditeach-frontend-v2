@@ -7,36 +7,24 @@ import ProtectedRoute from "./helpers/ProtectedRoute";
 import Sidebar from "./components/Sidebar";
 import ProjectsPage from "./pages/ProjectsPage";
 import CreateProjectPage from "./pages/CreateProjectPage";
+import CreateProjectCover from "./components/CreateProjectCover";
+import ProjectItemPage from "./components/ProjectItemPage";
 
 function App() {
   return (
       <div className="App">
           <Routes>
               <Route path={"/login"} element={<LoginPage/>}/>
-              <Route path={"/"} element={
-                  <ProtectedRoute>
-                      <Sidebar/>
-                      <HomePage/>
-                  </ProtectedRoute>
-              }/>
-              <Route path={"/projects"} element={
-                  <ProtectedRoute>
-                      <Sidebar/>
-                      <ProjectsPage/>
-                  </ProtectedRoute>
-              }/>
-              <Route path={"/projects/:id"} element={
-                  <ProtectedRoute>
-                      <Sidebar/>
-                      <ProjectsPage key={"projects-with-id"}/>
-                  </ProtectedRoute>
-              }/>
-              <Route path={"/create-project"} element={
-                  <ProtectedRoute>
-                      <Sidebar/>
-                      <CreateProjectPage/>
-                  </ProtectedRoute>
-              }/>
+              <Route path={"/"} element={<ProtectedRoute><Sidebar/></ProtectedRoute>}>
+                  <Route index element={<HomePage/>}/>
+                  <Route path={'projects'} element={<ProjectsPage/>}>
+                      <Route index element={<CreateProjectCover/>}/>
+                  </Route>
+                  <Route path={'projects/:projectId'} element={<ProjectsPage/>}>
+                      <Route index element={<ProjectItemPage/>}/>
+                  </Route>
+                  <Route path={'create-project'} element={<CreateProjectPage/>}/>
+              </Route>
           </Routes>
       </div>
   );

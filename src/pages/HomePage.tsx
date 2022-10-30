@@ -6,8 +6,8 @@ import {getAllStudents, getAllTeachers} from "../services/statistics";
 
 
 export default function HomePage() {
-    const [students, setStudents] = useState([])
-    const [teachers, setTeachers] = useState([])
+    const [students, setStudents] = useState<[]>()
+    const [teachers, setTeachers] = useState<[]>()
     const cities = [
         {
             name: "Все города",
@@ -56,12 +56,16 @@ export default function HomePage() {
     ]
 
     useEffect(() => {
-        getAllStudents().then(res => {
-            setStudents(res)
-        })
-        getAllTeachers().then(res => {
-            setTeachers(res)
-        })
+        if (!students) {
+            getAllStudents().then(res => {
+                setStudents(res)
+            })
+        }
+        if (!teachers) {
+            getAllTeachers().then(res => {
+                setTeachers(res)
+            })
+        }
     }, [students])
 
     const renderedCitiesItem = () => {
@@ -92,7 +96,7 @@ export default function HomePage() {
         )
     }
 
-    const renderedStudentsItem = students.map((item, index) => {
+    const renderedStudentsItem = students?.map((item, index) => {
         return (
             <div className="student-item" key={`${index}-student`}>
                 <div className="student-profile-image">
@@ -121,7 +125,7 @@ export default function HomePage() {
                     <div className="home-statistics">
                         <div className="home-statistics-item">
                             <div className="statistics-info">
-                                <p className="statistics-num">{students.length}</p>
+                                <p className="statistics-num">{students?.length || 0}</p>
                                 <p className="statistics-text">учеников</p>
                             </div>
                             <div className="statistics-icon">
@@ -130,7 +134,7 @@ export default function HomePage() {
                         </div>
                         <div className="home-statistics-item">
                             <div className="statistics-info">
-                                <p className="statistics-num">{teachers.length}</p>
+                                <p className="statistics-num">{teachers?.length || 0}</p>
                                 <p className="statistics-text">учителей</p>
                             </div>
                             <div className="statistics-icon">
@@ -170,7 +174,7 @@ export default function HomePage() {
                             <input placeholder={"Поиск"}/>
                         </div>
                         <div className="students-list">
-                            {renderedStudentsItem.length === 0 ? (
+                            {renderedStudentsItem?.length === 0 ? (
                                 <p className={'not-exist'}>
                                     Пока что нету учеников.
                                 </p>

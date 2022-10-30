@@ -1,0 +1,15 @@
+export interface ProjectResponse{
+    id: number,
+    name: string,
+    type: string,
+    level: string,
+    description: string,
+    tech_components: string,
+    duration: number,
+    purchase_box_link: string,
+    creator_id: number,
+    source_code: string,
+    block_code: string,
+    cover_img_url: string,
+    scheme_img_url: string,
+}

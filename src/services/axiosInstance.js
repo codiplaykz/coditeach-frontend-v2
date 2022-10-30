@@ -12,7 +12,6 @@ axiosInstance.interceptors.request.use(async (config) => {
 		console.log('accessToken: ', token);
 		config.headers['Authorization'] = `${token}`;
 	}
-
 	return config;
 });
 
@@ -26,6 +25,7 @@ axiosInstance.interceptors.response.use(function (response) {
 			refreshTokens().then(res => {
 				localStorage.setItem('accessToken', res?.accessToken);
 				localStorage.setItem('refreshToken', res?.refreshToken);
+				window.location.reload()
 			}).catch( () => {
 				store.dispatch(removeUser())
 			});
