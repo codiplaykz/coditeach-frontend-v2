@@ -10,6 +10,29 @@
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba($gray, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba($gray, 0.4);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+
+  &:hover {
+    background-color: rgba($gray, 0.6);
+  }
+}
+
 @mixin centeredItem {
   display: flex;
   align-items: center;
@@ -63,12 +86,12 @@
 
       .login-text {
         margin: 20px 0 50px;
-        font-size: 1.2em;
+        font-size: 16px;
         color: $gray;
       }
 
       .login-title {
-        font-size: 3em;
+        font-size: 32px;
         font-weight: 600;
       }
 
@@ -76,12 +99,12 @@
         text-align: right;
         font-weight: bold;
         text-decoration: underline;
-        font-size: 1.2em;
+        font-size: 16px;
         margin: 15px 0;
       }
 
       .login-input {
-        font-size: 1.2em;
+        font-size: 16px;
         display: block;
         margin: 20px 0;
         padding: 15px 5px;
@@ -124,11 +147,10 @@
   top: 0;
   left: 0;
   position: fixed;
-  width: 10vw;
+  width: calc(20vw - 100px);
   height: 100vh;
   padding: 50px;
   display: grid;
-  grid-template-rows: 10vh 60vh 25vh;
 
   .sidebar-header {
     cursor: pointer;
@@ -147,7 +169,7 @@
       align-items: center;
       color: $gray_medium_light;
       font-weight: bold;
-      font-size: 1.2em;
+      font-size: 16px;
       padding: 10px 15px;
       margin: 20px 0;
       cursor: pointer;
@@ -182,12 +204,12 @@
     align-items: center;
 
     .sidebar-profile-image {
-      width: 64px;
-      height: 64px;
+      width: 32px;
+      height: 32px;
       position: relative;
       overflow: hidden;
       border-radius: 50%;
-      border: 10px solid $gray_light_extra;
+      border: 5px solid $gray_light_extra;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -201,7 +223,7 @@
     }
 
     .sidebar-username {
-      font-size: 1.2em;
+      font-size: 20px;
       font-weight: bold;
       margin: 10px 0;
     }
@@ -222,17 +244,18 @@
 }
 
 .home-page {
-  margin-left: 15vw;
+  margin-left: 20vw;
 
   .page-title {
-    font-size: 2em;
-    margin: 50px 0;
+    font-size: 24px;
+    margin: 50px 0 10px 0;
     font-weight: bold;
   }
 
   .home-container {
     display: grid;
-    grid-template-columns: 60% 30%;
+    grid-template-columns: calc(50vw - 12px) calc(25vw - 12px);
+    max-width: 80vw;
     gap: 24px;
 
     .home-leftside {
@@ -335,12 +358,15 @@
           font-size: 16px;
           font-weight: bold;
         }
+
         .class-tabs {
           display: flex;
-          gap: 8px;
+          overflow-x: scroll;
           margin: 24px 0;
 
           .class-item{
+            flex-shrink: 0;
+            margin: 5px;
             padding: 10px 16px;
             border-radius: 15px;
             background: $gray_light_extra;
@@ -348,11 +374,14 @@
             font-size: 14px;
           }
         }
+
         .class-search {
           padding: 12px 24px;
           border-radius: 15px;
           border: 2px solid $gray_light;
-          display: flex;
+          display: grid;
+          grid-gap: 5px;
+          grid-template-columns: 20px calc(100% - 25px);
           align-items: center;
 
           input {
@@ -363,6 +392,7 @@
             outline: none;
           }
         }
+
         .students-list {
           .student-item {
             display: grid;
@@ -429,12 +459,12 @@
 }
 
 .projects-page {
-  margin: 48px 0 0 15vw;
+  margin: 48px 20px 0 20vw;
   display: grid;
-  gap: 24px;
+  grid-template-columns: 1fr 3fr;
+  gap: 32px;
 
   .projects-list {
-    position: fixed;
     .title {
       font-weight: bold;
       font-size: 20px;
@@ -551,8 +581,6 @@
   }
 
   .project-container {
-    max-width: 900px;
-    margin-left: 25%;
 
     @mixin project-info-template {
       padding: 48px;
@@ -677,8 +705,6 @@
   }
 
   .create-project-cover {
-    max-width: 900px;
-    margin-left: 25%;
     display: flex;
     height: 100vh;
     flex-direction: column;
@@ -712,6 +738,10 @@
       width: 50% ;
     }
   }
+
+  //@media screen and (max-width: $small) {
+  //  //do Smth
+  //}
 }
 
 .divider {
@@ -836,7 +866,7 @@
 }
 
 .create-project-page {
-  margin: 48px 15vw 0 15vw;
+  margin: 48px 15vw 0 20vw;
   max-width: 1400px;
 
   .page-header {

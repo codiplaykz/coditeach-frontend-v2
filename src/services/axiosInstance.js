@@ -19,14 +19,15 @@ axiosInstance.interceptors.response.use(function (response) {
 	return response;
 }, function (error) {
 	if (401 === error.response.status) {
-		if (error.response.data.error === 'invalid auth user') {
+		if (error.response.data.error === 'not admin') {
+			console.log("not admin")
 			store.dispatch(removeUser())
 		} else {
 			refreshTokens().then(res => {
 				localStorage.setItem('accessToken', res?.accessToken);
 				localStorage.setItem('refreshToken', res?.refreshToken);
-				window.location.reload()
-			}).catch( () => {
+			}).catch( (err) => {
+				console.log("refresh token api call error:", err)
 				store.dispatch(removeUser())
 			});
 		}

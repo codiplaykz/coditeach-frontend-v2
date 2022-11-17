@@ -11,10 +11,12 @@ export default function ProjectItemPage() {
     const {projectId} = useParams()
 
     useEffect(()=>{
-        getProjectById(projectId).then(res=>{
-            setProjectData(res)
-        })
-    })
+        if (!projectData) {
+            getProjectById(projectId).then(res=>{
+                setProjectData(res)
+            })
+        }
+    },[projectData])
 
     if (!projectData) {
         return (

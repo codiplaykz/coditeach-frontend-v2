@@ -5,11 +5,12 @@ import CreateProjectModal from "../components/CreateProjectModal";
 import GoBackButton from "../components/GoBackButton";
 import ProjectsList from "../components/ProjectsList";
 import {getAllProjects} from "../services/project";
+import {ProjectResponse} from "../interfaces/ProjectResponse";
 
 export default function ProjectsPage() {
     const [activeTab, setActiveTab] = useState(0)
     const [createProjectModalShow, setCreateProjectModalShow] = useState(false)
-    const [projects, setProjects] = useState()
+    const [projects, setProjects] = useState<ProjectResponse[]>()
     const categories = ['Все', 'Lifestyle', 'SmartCity',  'Game', 'Robotics']
 
     useEffect(()=>{

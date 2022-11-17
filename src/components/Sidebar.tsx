@@ -92,30 +92,30 @@ export default function Sidebar() {
     return (
         <>
             <div className='sidebar-container'>
-            <div className='sidebar-header' onClick={()=>{redirect('/')}}>
-                <img src={logo} alt='logo'/>
-                <Icon color={'#C2C2C2'} size={1} name={'Notification'}/>
-            </div>
-            <div className='sidebar-body'>
-                {renderedSidebarItems()}
-            </div>
-            <div className='sidebar-footer'>
-                <div className="sidebar-profile-image">
-                    <img src={avatar} alt='avatar'/>
+                <div className='sidebar-header' onClick={()=>{redirect('/')}}>
+                    <img src={logo} alt='logo'/>
+                    <Icon color={'#C2C2C2'} size={1} name={'Notification'}/>
                 </div>
-                <p className='sidebar-username'>
-                    {`${user?.Name} ${user?.Surname}`}
-                </p>
-                <p className='sidebar-email'>
-                    {`${user?.Email}`}
-                </p>
-                <div className='sidebar-icons'>
-                    <Icon color={'#c2c2c2'} name={'Profile'} size={1} />
-                    {/*@ts-ignore*/}
-                    <Icon color={'#c2c2c2'} onClick={()=>logout()} name={'SignOut'} size={1} />
+                <div className='sidebar-body'>
+                    {renderedSidebarItems()}
+                </div>
+                <div className='sidebar-footer'>
+                    <div className="sidebar-profile-image">
+                        <img src={avatar} alt='avatar'/>
+                    </div>
+                    <p className='sidebar-username'>
+                        {`${user?.Name} ${user?.Surname}`}
+                    </p>
+                    <p className='sidebar-email'>
+                        {`${user?.Email}`}
+                    </p>
+                    <div className='sidebar-icons'>
+                        <Icon color={'#c2c2c2'} name={'Profile'} size={1} />
+                        {/*@ts-ignore*/}
+                        <Icon color={'#c2c2c2'} onClick={()=>logout()} name={'SignOut'} size={1} />
+                    </div>
                 </div>
             </div>
-        </div>
             <Outlet/>
         </>
     )
