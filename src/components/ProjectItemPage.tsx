@@ -11,12 +11,10 @@ export default function ProjectItemPage() {
     const {projectId} = useParams()
 
     useEffect(()=>{
-        if (!projectData) {
-            getProjectById(projectId).then(res=>{
-                setProjectData(res)
-            })
-        }
-    },[projectData])
+        getProjectById(projectId).then(res=>{
+            setProjectData(res)
+        })
+    },[setProjectData, projectId])
 
     if (!projectData) {
         return (
@@ -47,9 +45,11 @@ export default function ProjectItemPage() {
         scheme_img_url,
     } = projectData
 
+    console.log(id, creator_id, block_code, cover_img_url)
+
     return (
         <>
-            <div className="project-container">
+            <div className="project-container" key={`project-${projectId}`}>
                 <div className="project-info">
                     <div className="project-header">
                         <div>

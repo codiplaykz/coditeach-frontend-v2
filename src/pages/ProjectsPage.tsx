@@ -1,26 +1,33 @@
 import Icon from "../helpers/Icon";
 import {useEffect, useState} from "react";
-import {Outlet, useParams} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import CreateProjectModal from "../components/CreateProjectModal";
 import GoBackButton from "../components/GoBackButton";
 import ProjectsList from "../components/ProjectsList";
 import {getAllProjects} from "../services/project";
 import {ProjectResponse} from "../interfaces/ProjectResponse";
 
+// @ts-ignore
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
 export default function ProjectsPage() {
     const [activeTab, setActiveTab] = useState(0)
     const [createProjectModalShow, setCreateProjectModalShow] = useState(false)
     const [projects, setProjects] = useState<ProjectResponse[]>()
-    const categories = ['Все', 'Lifestyle', 'SmartCity',  'Game', 'Robotics']
+    const [categories, setCategories] = useState(['Все'])
 
     useEffect(()=>{
-        if (!projects) {
-            getAllProjects().then(res=>{
-                console.log(res)
-                setProjects(res)
+        getAllProjects().then(res=>{
+            setProjects(res)
+            let tempCategories = categories;
+            res.forEach((project: ProjectResponse)=>{
+                tempCategories.push(project.type)
             })
-        }
-    }, [projects])
+            setCategories(tempCategories.filter(onlyUnique))
+        })
+    }, [setProjects, setCategories])
 
     const renderedTabs = categories.map((item, index) => {
         return (
@@ -54,7 +61,7 @@ export default function ProjectsPage() {
                 </button>
 
                 <div className="list">
-                    <ProjectsList projects={projects ?? []}/>
+                    <ProjectsList selectedCategory={activeTab} categories={categories} projects={projects ?? []}/>
                 </div>
             </div>
 

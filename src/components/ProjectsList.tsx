@@ -3,10 +3,12 @@ import Icon from "../helpers/Icon";
 import {useNavigate} from "react-router-dom";
 
 interface ProjectsListProps {
+    selectedCategory: number
+    categories: string[]
     projects: {id: number, name: string, cover_img_url: string, type: string, duration: number}[]
 }
 
-export default function ProjectsList({projects}: ProjectsListProps) {
+export default function ProjectsList({projects, selectedCategory, categories}: ProjectsListProps) {
     const navigate = useNavigate()
 
     if (projects.length === 0) {
@@ -27,7 +29,7 @@ export default function ProjectsList({projects}: ProjectsListProps) {
     }
 
     const renderedProjects = projects.map((project, index) => {
-        return (
+        const projectComponent = (
             <div key={`${index}-project-list-item`} onClick={()=>{redirect(`/projects/${project.id}`)}}>
                 <div className="project-item">
                     <div className="inner">
@@ -59,6 +61,14 @@ export default function ProjectsList({projects}: ProjectsListProps) {
                 <hr className="divider"/>
             </div>
         )
+        if (selectedCategory === 0) {
+            return projectComponent
+        }
+        else {
+            if (project.type === categories[selectedCategory]) {
+                return projectComponent
+            }
+        }
     })
 
     return (
