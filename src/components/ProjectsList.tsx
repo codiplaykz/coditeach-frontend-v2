@@ -1,17 +1,18 @@
 import Spinner from "../helpers/Spinner";
 import Icon from "../helpers/Icon";
 import {useNavigate} from "react-router-dom";
+import {ProjectResponse} from "../interfaces/ProjectResponse";
 
 interface ProjectsListProps {
     selectedCategory: number
     categories: string[]
-    projects: {id: number, name: string, cover_img_url: string, type: string, duration: number}[]
+    projects: ProjectResponse[] | null
 }
 
 export default function ProjectsList({projects, selectedCategory, categories}: ProjectsListProps) {
     const navigate = useNavigate()
 
-    if (projects.length === 0) {
+    if (projects === null) {
         return (
             <div className={"center"} style={{height: '30vh'}}>
                 <div style={{alignItems: "center", display: 'flex', flexDirection: 'column'}}>
@@ -20,6 +21,14 @@ export default function ProjectsList({projects, selectedCategory, categories}: P
                         Загрузка проектов
                     </p>
                 </div>
+            </div>
+        )
+    }
+
+    if (projects?.length === 0) {
+        return (
+            <div style={{margin: '50px', textAlign: "center", fontWeight: '700', color: "gray"}}>
+                Нету добавленных проектов
             </div>
         )
     }

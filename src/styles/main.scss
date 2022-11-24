@@ -49,12 +49,139 @@
   }
 }
 
+.centered-div {
+  @include centeredItem;
+  margin: 50px 0;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.serverside-error-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: $gray_light_extra;
+  @include centeredItem;
+
+  .inner-container {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    display: grid;
+    grid-template-columns: 500px 500px;
+    grid-gap: 50px;
+    border-radius: 50px;
+    background: $white;
+    height: 700px;
+    padding: 0 100px;
+
+    .img {
+      @include centeredItem;
+      justify-content: end;
+    }
+
+    .text {
+      @include centeredItem;
+      justify-content: start;
+
+      .title {
+        color: black;
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 25px;
+      }
+
+      .desc {
+        color: $gray;
+      }
+
+      .buttons {
+        display: flex;
+        button {
+          margin: 25px 24px 25px 0;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 5px;
+          background: $gray_light_extra;
+          cursor: pointer;
+          color: $gray;
+          font-weight: 700;
+          font-size: 16px;
+          transition: all ease-in-out 200ms;
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 12px;
+          }
+
+          &:hover {
+            transform: scale(1.05);
+            transition: all ease-in-out 200ms;
+          }
+        }
+      }
+    }
+  }
+
+  img {
+    width: 500px;
+    border-radius: 50px;
+  }
+}
+
+.network-status-bar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  svg {
+    margin-right: 12px;
+  }
+
+  font-weight: 600;
+  color: white;
+  @include centeredItem;
+}
+
+.online {
+  background: $success;
+}
+
+.offline {
+  background: $error;
+}
+
+.create-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  background: $primary;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 0;
+  margin: 36px 0 12px;
+  transition: all ease-in-out 300ms;
+  width: 100%;
+
+  &:hover {
+    background: $secondary;
+    transition: all ease-in-out 300ms;
   }
 }
 
@@ -243,9 +370,39 @@
   }
 }
 
-.home-page {
-  margin-left: 20vw;
+.page-layout {
+  margin: 48px 20px 0 20vw;
+}
 
+.search-container {
+  padding: 12px 24px;
+  border-radius: 15px;
+  border: 2px solid $gray_light;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 20px calc(100% - 25px);
+  align-items: center;
+  transition: all ease-in-out 300ms;
+
+  &:focus-within {
+    border: $primary 2px solid;
+    transition: all ease-in-out 300ms;
+  }
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  padding: 0 12px;
+  outline: none;
+
+  &:focus-within search-container {
+    opacity: 1;
+  }
+}
+
+.home-page {
   .page-title {
     font-size: 24px;
     margin: 50px 0 10px 0;
@@ -375,24 +532,6 @@
           }
         }
 
-        .class-search {
-          padding: 12px 24px;
-          border-radius: 15px;
-          border: 2px solid $gray_light;
-          display: grid;
-          grid-gap: 5px;
-          grid-template-columns: 20px calc(100% - 25px);
-          align-items: center;
-
-          input {
-            border: none;
-            background: transparent;
-            font-size: 14px;
-            padding: 0 12px;
-            outline: none;
-          }
-        }
-
         .students-list {
           .student-item {
             display: grid;
@@ -459,7 +598,6 @@
 }
 
 .projects-page {
-  margin: 48px 20px 0 20vw;
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 32px;
@@ -495,29 +633,6 @@
         color: $primary;
         border-bottom: 1px solid $primary;
         transition: all linear 300ms;
-      }
-    }
-
-    .create-project-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 15px;
-      background: $primary;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 12px 0;
-      margin: 36px 0 12px;
-      transition: all ease-in-out 300ms;
-      width: 100%;
-
-      &:hover {
-        background: $secondary;
-        transition: all ease-in-out 300ms;
       }
     }
 
@@ -748,6 +863,68 @@
   border: 1px solid $gray_light_extra;
 }
 
+.create-school-modal {
+  padding: 24px 0 32px 0;
+
+  .title {
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .school-name {
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    .name-title {
+      margin-bottom: 8px;
+    }
+  }
+
+  .school-location {
+    margin-bottom: 24px;
+
+    .name-title {
+      margin-bottom: 8px;
+    }
+  }
+
+  .license-plan {
+    margin-bottom: 24px;
+
+    .plan-title {
+      margin-bottom: 8px;
+    }
+
+    .license-plans {
+      margin-bottom: 24px;
+
+      .license-plan {
+        cursor: pointer;
+        margin-right: 12px;
+        display: inline-block;
+        outline: none;
+        padding: 12px 24px;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        border: $gray_light_extra 2px solid;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      }
+
+      .checked {
+        background-color: $primary;
+        color: white;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 12px;
+  }
+}
+
 .create-project-modal {
   padding: 24px 0 32px 0;
 
@@ -866,7 +1043,6 @@
 }
 
 .create-project-page {
-  margin: 48px 15vw 0 20vw;
   max-width: 1400px;
 
   .page-header {
@@ -1083,5 +1259,50 @@
     align-items: center;
     gap: 24px;
     margin-top: 12px;
+  }
+}
+
+.schools-page {
+  display: grid;
+  grid-template-columns: 20vw 50vw;
+
+  .schools-sidebar {
+    .title {
+      margin: 36px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        font-size: 24px;
+        font-weight: 600;
+
+        .schools-num {
+          color: $primary;
+        }
+      }
+    }
+
+    .schools-list {
+      .school-item {
+        padding: 12px 24px;
+        border-radius: 15px;
+        background: rgba($primary, 0.2);
+        font-weight: 700;
+        cursor: pointer;
+        transition: all ease-in-out 300ms;
+
+        &:hover {
+          background: rgba($primary, 0.3);
+          transition: all ease-in-out 300ms;
+        }
+      }
+
+      .active {
+        border: 2px solid $primary;
+        background: white;
+        color: $primary;
+      }
+    }
   }
 }

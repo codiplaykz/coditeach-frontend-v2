@@ -3,6 +3,7 @@ import Icon from "../helpers/Icon";
 import defaultAvatar from '../assets/images/avatar.svg';
 import {useEffect, useState} from "react";
 import {getAllStudents, getAllTeachers} from "../services/statistics";
+import Search from "../components/Search";
 
 
 export default function HomePage() {
@@ -170,8 +171,7 @@ export default function HomePage() {
                             {renderedClassesItem()}
                         </div>
                         <div className="class-search">
-                            <Icon color={"#C2C2C2"} size={1} name={'Search'}/>
-                            <input placeholder={"Поиск"}/>
+                            <Search array={[]} setArray={()=>{}}/>
                         </div>
                         <div className="students-list">
                             {renderedStudentsItem?.length === 0 ? (

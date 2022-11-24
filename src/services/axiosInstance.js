@@ -18,7 +18,10 @@ axiosInstance.interceptors.request.use(async (config) => {
 axiosInstance.interceptors.response.use(function (response) {
 	return response;
 }, function (error) {
-	if (401 === error.response.status) {
+	if (error.code === 'ERR_NETWORK') {
+		window.location.href = '/500'
+	}
+	if (401 === error.response?.status) {
 		if (error.response.data.error === 'not admin') {
 			console.log("not admin")
 			store.dispatch(removeUser())

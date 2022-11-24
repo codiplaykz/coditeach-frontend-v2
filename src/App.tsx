@@ -9,10 +9,14 @@ import ProjectsPage from "./pages/ProjectsPage";
 import CreateProjectPage from "./pages/CreateProjectPage";
 import CreateProjectCover from "./components/CreateProjectCover";
 import ProjectItemPage from "./components/ProjectItemPage";
+import SchoolsPage from "./pages/SchoolsPage";
+import ServerSideError from "./pages/ServerSideError";
+import NetworkStatusBar from "./components/NetworkStatusBar";
 
 function App() {
   return (
       <div className="App">
+          {<NetworkStatusBar/>}
           <Routes>
               <Route path={"/login"} element={<LoginPage/>}/>
               <Route path={"/"} element={<ProtectedRoute><Sidebar/></ProtectedRoute>}>
@@ -24,7 +28,10 @@ function App() {
                       <Route index element={<ProjectItemPage/>}/>
                   </Route>
                   <Route path={'create-project'} element={<CreateProjectPage/>}/>
+                  <Route path={'schools'} element={<SchoolsPage/>}/>
               </Route>
+              <Route path={'*'} element={<>Not found</>}/>
+              <Route path={'/500'} element={<ServerSideError/>}/>
           </Routes>
       </div>
   );

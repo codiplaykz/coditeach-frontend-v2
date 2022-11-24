@@ -6,6 +6,7 @@ import GoBackButton from "../components/GoBackButton";
 import ProjectsList from "../components/ProjectsList";
 import {getAllProjects} from "../services/project";
 import {ProjectResponse} from "../interfaces/ProjectResponse";
+import CreateButton from "../components/CreateButton";
 
 // @ts-ignore
 function onlyUnique(value, index, self) {
@@ -55,13 +56,10 @@ export default function ProjectsPage() {
                     {renderedTabs}
                 </div>
 
-                <button className="create-project-button" onClick={()=>setCreateProjectModalShow(true)}>
-                    <Icon color={"white"} size={1} name={"Add"}/>
-                    Создать проект
-                </button>
+                <CreateButton title={"Создать проект"} onClick={()=>{setCreateProjectModalShow(true)}}/>
 
                 <div className="list">
-                    <ProjectsList selectedCategory={activeTab} categories={categories} projects={projects ?? []}/>
+                    <ProjectsList selectedCategory={activeTab} categories={categories} projects={projects ?? null}/>
                 </div>
             </div>
 

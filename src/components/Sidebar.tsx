@@ -8,13 +8,14 @@ import {useAuth} from '../hooks/use-auth';
 import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import PageLayout from './PageLayout';
 
 export default function Sidebar() {
     const adminItems = [
         {
             iconName: 'Schools',
             title: 'Школы',
-            link: ''
+            link: '/schools'
         },
         {
             iconName: 'Lessons',
@@ -63,10 +64,13 @@ export default function Sidebar() {
     }
 
     useEffect(()=>{
+        adminItems.forEach((item, index)=>{
+            if (item.link === pathname) {
+                setActiveItem(index)
+            }
+        })
         if (pathname === '/') {
             setActiveItem(-1)
-        } else if (pathname === '/projects') {
-            setActiveItem(2)
         }
     },[pathname])
 
@@ -116,7 +120,9 @@ export default function Sidebar() {
                     </div>
                 </div>
             </div>
-            <Outlet/>
+            <PageLayout>
+                <Outlet/>
+            </PageLayout>
         </>
     )
 }

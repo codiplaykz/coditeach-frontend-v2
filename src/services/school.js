@@ -1,4 +1,5 @@
 import axiosInstance from './axiosInstance';
+import ServerSideError from "../pages/ServerSideError";
 
 // Create school
 export const createSchool = (data) => {
