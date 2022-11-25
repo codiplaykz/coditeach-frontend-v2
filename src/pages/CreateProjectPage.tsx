@@ -132,7 +132,7 @@ export default function CreateProjectPage() {
                                             secondaryButtonLink={"/projects"}
                                             primaryButtonText={"Посмотреть проект"}
         // TODO PROJECT PAGE
-                                            primaryButtonLink={"/projects/id"}/>)
+                                            primaryButtonLink={"/projects"}/>)
 
     const errorAlertMessage = (<MessageModal type={"error"}
                                             title={`Что-то пошло не так...`}

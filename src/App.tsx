@@ -12,6 +12,8 @@ import ProjectItemPage from "./components/ProjectItemPage";
 import SchoolsPage from "./pages/SchoolsPage";
 import ServerSideError from "./pages/ServerSideError";
 import NetworkStatusBar from "./components/NetworkStatusBar";
+import CreateSchoolCover from "./components/CreateSchoolCover";
+import SchoolItemPage from "./components/SchoolItemPage";
 
 function App() {
   return (
@@ -28,7 +30,13 @@ function App() {
                       <Route index element={<ProjectItemPage/>}/>
                   </Route>
                   <Route path={'create-project'} element={<CreateProjectPage/>}/>
-                  <Route path={'schools'} element={<SchoolsPage/>}/>
+                  <Route path={'schools'} element={<SchoolsPage/>}>
+                      <Route index element={<CreateSchoolCover/>}/>
+                  </Route>
+                  <Route path={'schools/:schoolId'} element={<SchoolsPage/>}>
+                      <Route index element={<SchoolItemPage/>}/>
+                  </Route>
+
               </Route>
               <Route path={'*'} element={<>Not found</>}/>
               <Route path={'/500'} element={<ServerSideError/>}/>

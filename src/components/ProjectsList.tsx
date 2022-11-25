@@ -81,8 +81,8 @@ export default function ProjectsList({projects, selectedCategory, categories}: P
     })
 
     return (
-        <>
+        <div className="projects-list">
             {renderedProjects}
-        </>
+        </div>
     )
 }

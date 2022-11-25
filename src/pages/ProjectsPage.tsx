@@ -45,7 +45,7 @@ export default function ProjectsPage() {
     return (
         <div className="projects-page">
             <CreateProjectModal open={createProjectModalShow} setOpen={setCreateProjectModalShow}/>
-            <div className="projects-list">
+            <div className="projects-sidebar">
                 <GoBackButton path={'/'} title={"На главную"} />
 
                 <p className="title">
@@ -58,9 +58,7 @@ export default function ProjectsPage() {
 
                 <CreateButton title={"Создать проект"} onClick={()=>{setCreateProjectModalShow(true)}}/>
 
-                <div className="list">
-                    <ProjectsList selectedCategory={activeTab} categories={categories} projects={projects ?? null}/>
-                </div>
+                <ProjectsList selectedCategory={activeTab} categories={categories} projects={projects ?? null}/>
             </div>
 
             <Outlet/>

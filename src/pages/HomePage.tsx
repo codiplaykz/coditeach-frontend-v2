@@ -9,6 +9,7 @@ import Search from "../components/Search";
 export default function HomePage() {
     const [students, setStudents] = useState<[]>()
     const [teachers, setTeachers] = useState<[]>()
+    const [result, setResult] = useState()
     const cities = [
         {
             name: "Все города",
@@ -171,7 +172,8 @@ export default function HomePage() {
                             {renderedClassesItem()}
                         </div>
                         <div className="class-search">
-                            <Search array={[]} setArray={()=>{}}/>
+                            {/*@ts-ignore*/}
+                            <Search array={[]} result={result} setResult={setResult}/>
                         </div>
                         <div className="students-list">
                             {renderedStudentsItem?.length === 0 ? (

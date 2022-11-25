@@ -1,5 +1,4 @@
 import axiosInstance from './axiosInstance';
-import ServerSideError from "../pages/ServerSideError";
 
 // Create school
 export const createSchool = (data) => {
@@ -14,3 +13,18 @@ export const getAllSchools = () => {
 	return axiosInstance.get(url)
 		.then(response => { return response.data; });
 };
+
+// Get school by id
+export const getSchoolById = (id) => {
+	const url = `/api/v1/school/get?id=${id}`;
+	return axiosInstance.get(url)
+		.then(response => { return response.data; });
+}
+
+// Delete school by id
+export const deleteSchoolById = (id) => {
+	const url = `/api/v1/school/delete?id=${id}`;
+	return axiosInstance.delete(url)
+		.then(response => { return response.data; });
+}
+

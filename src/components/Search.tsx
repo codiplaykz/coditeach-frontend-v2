@@ -2,19 +2,20 @@ import Icon from "../helpers/Icon";
 import {useState} from "react";
 
 interface SearchProps {
-    array: string[]
-    setArray: Function
+    array: any[]
+    result: any[]
+    setResult: Function
 }
 
-export default function Search({array, setArray}: SearchProps) {
+export default function Search({array, result, setResult}: SearchProps) {
     const [inputValue, setInputValue] = useState('')
 
     const handleInputValueChange = (value: string) => {
+        setInputValue(value)
         if (value) {
-            setInputValue(value)
-            array.filter((item) => {
-
-            })
+            // array.filter((item) => {
+            //
+            // })
         }
     }
 
