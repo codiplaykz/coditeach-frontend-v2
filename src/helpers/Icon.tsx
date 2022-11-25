@@ -498,8 +498,8 @@ const File = (props: any, size: number, color="#161616") => {
 const Online = (props: any, size: number, color="#161616") => {
     return (
         <svg {...props} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-wifi" width={size*24} height={size*24}
-             viewBox="0 0 24 24" stroke-width="1.5" stroke={color} fill="none" stroke-linecap="round"
-             stroke-linejoin="round">
+             viewBox="0 0 24 24" strokeWidth="1.5" stroke={color} fill="none" strokeLinecap="round"
+             strokeLinejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <line x1="12" y1="18" x2="12.01" y2="18"/>
             <path d="M9.172 15.172a4 4 0 0 1 5.656 0"/>
@@ -512,8 +512,8 @@ const Online = (props: any, size: number, color="#161616") => {
 const Offline = (props: any, size: number, color="#161616") => {
     return (
         <svg {...props} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-wifi-off" width={size*24} height={size*24}
-             viewBox="0 0 24 24" stroke-width="1.5" stroke={color} fill="none" stroke-linecap="round"
-             stroke-linejoin="round">
+             viewBox="0 0 24 24" strokeWidth="1.5" stroke={color} fill="none" strokeLinecap="round"
+             strokeLinejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <line x1="12" y1="18" x2="12.01" y2="18"></line>
             <path d="M9.172 15.172a4 4 0 0 1 5.656 0"></path>

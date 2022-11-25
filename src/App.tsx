@@ -10,7 +10,7 @@ import CreateProjectPage from "./pages/CreateProjectPage";
 import CreateProjectCover from "./components/CreateProjectCover";
 import ProjectItemPage from "./components/ProjectItemPage";
 import SchoolsPage from "./pages/SchoolsPage";
-import ServerSideError from "./pages/ServerSideError";
+import ErrorPage from "./pages/ErrorPage";
 import NetworkStatusBar from "./components/NetworkStatusBar";
 import CreateSchoolCover from "./components/CreateSchoolCover";
 import SchoolItemPage from "./components/SchoolItemPage";
@@ -38,8 +38,8 @@ function App() {
                   </Route>
 
               </Route>
-              <Route path={'*'} element={<>Not found</>}/>
-              <Route path={'/500'} element={<ServerSideError/>}/>
+              <Route path={'*'} element={<ErrorPage errorCode={404}/>}/>
+              <Route path={'/500'} element={<ErrorPage errorCode={500}/>}/>
           </Routes>
       </div>
   );

@@ -5,6 +5,6 @@ import projectReducer from './slices/projectSlice'
 export const store = configureStore({
     reducer: {
         user: userReducer,
-        project: projectReducer
+        project: projectReducer,
     }
 })

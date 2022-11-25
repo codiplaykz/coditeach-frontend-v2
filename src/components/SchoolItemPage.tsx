@@ -5,10 +5,12 @@ import {SchoolResponse} from "../interfaces/SchoolResponse";
 import {deleteSchoolById, getSchoolById} from "../services/school";
 import Icon from "../helpers/Icon";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import EditSchoolModal from "./EditSchoolModal";
 
 export default function SchoolItemPage() {
     const [schoolData, setSchoolData] = useState<SchoolResponse>()
     const [showDeleteSchoolModal, setShowDeleteSchoolModal] = useState(false)
+    const [showEditSchoolModal, setShowEditSchoolModal] = useState(false)
     const {schoolId} = useParams()
 
     useEffect(()=>{
@@ -16,7 +18,7 @@ export default function SchoolItemPage() {
             setSchoolData(res)
         }).catch(error => {
             if (error?.response?.status === 404) {
-
+                window.location.href = '/404'
             }
         })
     },[setSchoolData, schoolId])
@@ -47,8 +49,18 @@ export default function SchoolItemPage() {
         </p>
     )
 
+    const editSchool = () => {
+        setShowEditSchoolModal(true)
+    }
+
     return (
         <div className="school-item-page-container" key={`${id}-school-item-page`}>
+            <EditSchoolModal schoolData={{
+                id,
+                name,
+                location,
+                license_expiration_date
+            }} open={showEditSchoolModal} setOpen={setShowEditSchoolModal}/>
             <DeleteConfirmationModal open={showDeleteSchoolModal} redirectLink={'/schools'} setOpen={setShowDeleteSchoolModal}
                                      title={deleteTitle} deleteAction={() => deleteSchoolById(id)}/>
             <div className="school-general-information">
@@ -65,7 +77,7 @@ export default function SchoolItemPage() {
                 </div>
                 <div className="control-buttons">
                     {/*@ts-ignore*/}
-                    <Icon color={"black"} size={1} name={'Edit'}/>
+                    <Icon color={"black"} size={1} name={'Edit'} onClick={()=>(editSchool())}/>
                     {/*@ts-ignore*/}
                     <Icon color={"red"} size={1} name={'Delete'} onClick={()=>{setShowDeleteSchoolModal(true)}}/>
                 </div>

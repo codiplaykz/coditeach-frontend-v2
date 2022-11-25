@@ -28,3 +28,12 @@ export const deleteSchoolById = (id) => {
 		.then(response => { return response.data; });
 }
 
+// Edit school
+export const editSchool = (data) => {
+	const url = `/api/v1/school/update`;
+	return axiosInstance.put(url, data)
+		.then(response => { return response.data; });
+}
+
+
+
