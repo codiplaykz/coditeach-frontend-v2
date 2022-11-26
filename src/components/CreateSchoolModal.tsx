@@ -1,13 +1,11 @@
 import Modal from "../helpers/Modal";
-import Dropdown from "../helpers/Listbox";
 import {Fragment, useState} from "react";
-import {useDispatch} from "react-redux";
-import {setProject} from "../store/slices/projectSlice";
 import Spinner from "../helpers/Spinner";
 import Message from "../helpers/Message";
 import {useNavigate} from "react-router-dom";
-import { RadioGroup } from "@headlessui/react";
+import {RadioGroup} from "@headlessui/react";
 import {createSchool} from "../services/school";
+import InputAutocomplete from "../helpers/InputAutocomplete";
 
 interface CreateSchoolModalProps {
     open: boolean,
@@ -16,6 +14,118 @@ interface CreateSchoolModalProps {
 
 export default function CreateSchoolModal({open, setOpen}: CreateSchoolModalProps) {
     const licenseMonthPlans = [1, 3, 6, 12, 24]
+    const KZCities = [
+        'Алматы',
+        'Астана',
+        'Шымкент',
+        'Абай',
+        'Айтеке Би',
+        'Акколь',
+        'Аксу',
+        'Аксу Павл.',
+            'Аксуат',
+        'Актау',
+        'Актобе',
+        'Аральск',
+        'Аркалык',
+        'Аршалы',
+        'Арыс',
+        'Астраханка',
+        'Атбасар',
+        'Атырау',
+        'Аулиеколь',
+        'Аягоз',
+        'Б.Момышулы (Бурное)',
+        'Баканас',
+        'Балпык Би',
+        'Балхаш',
+        'Глубокое',
+        'Ерейментау',
+        'Есик',
+        'Есиль',
+        'Жалагаш',
+        'Жанаарка',
+        'Жанаозен',
+        'Жанатас',
+        'Жаркент',
+        'Жезказган',
+        'Жетысай',
+        'Житикара',
+        'Жосалы',
+        'Зайсан',
+        'Индербор',
+        'Казыгурт',
+        'Калбатау',
+        'Кандыагаш',
+        'Караганда',
+        'Караганда Абай',
+        'Каратау',
+        'Каскелен',
+        'Кентау',
+        'Кокпекты',
+        'Кокшетау',
+        'Конаев',
+        'Кордай',
+        'Костанай',
+        'Кулан',
+        'Кульсары',
+        'Курчатов',
+        'Курчум',
+        'Кызылорда',
+        'Ленгер',
+        'Лисаковск',
+        'Макинск',
+        'Мартук',
+        'Мерке',
+        'Мырзакент',
+        'Новоишимское',
+        'Осакаровка',
+        'Павлодар',
+        'Перемётное',
+        'Петропавловск',
+        'Рудный',
+        'Сайрам',
+        'Сарань',
+        'Сарканд',
+        'Сарыагаш',
+        'Сарыозек',
+        'Сатпаев',
+        'Саумалколь',
+        'Семей',
+        'Степногорск',
+        'Тайынша',
+        'Талгар',
+        'Талдыкорган',
+        'Тараз',
+        'Текели',
+        'Темирлан',
+        'Темиртау',
+        'Теренозек',
+        'Торетам',
+        'Турар Рыскулов',
+        'Турк. обл. Карабулак',
+        'Туркестан',
+        'Узынагаш',
+        'Улкен-Нарын',
+        'Уральск',
+        'Урджар',
+        'Усть-Каменогорск',
+        'Ушарал',
+        'Уштобе',
+        'Хромтау',
+        'Чунджа',
+        'Шалкар',
+        'Шахтинск',
+        'Шаян',
+        'Шелек',
+        'Шемонаиха',
+        'Шетпе',
+        'Шиели',
+        'Шу',
+        'Шубаркудук',
+        'Щучинск',
+        'Экибастуз',
+    ]
     const [selectedLicensePlan, setSelectedLicensePlan] = useState(licenseMonthPlans[0])
     const [schoolName, setSchoolName] = useState('')
     const [schoolLocation, setSchoolLocation] = useState('')
@@ -97,12 +207,9 @@ export default function CreateSchoolModal({open, setOpen}: CreateSchoolModalProp
                 </div>
                 <div className="school-location">
                     <p className="name-title">
-                        Город или село
+                        Город или населенный пункт
                     </p>
-
-                    <input type="text" value={schoolLocation}
-                           onChange={(event) => {setSchoolLocation(event.target.value)}}
-                           placeholder={"Введите название города или села"} className={"default-input"}/>
+                    <InputAutocomplete array={KZCities} selected={schoolLocation} setSelected={setSchoolLocation}/>
                 </div>
                 <div className="license-plan">
                     <p className="plan-title">

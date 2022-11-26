@@ -1,5 +1,5 @@
 import Modal from "../helpers/Modal";
-import Dropdown from "../helpers/Listbox";
+import Dropdown from "../helpers/Dropdown";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {setProject} from "../store/slices/projectSlice";

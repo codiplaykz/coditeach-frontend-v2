@@ -1315,18 +1315,24 @@
         background: rgba($primary, 0.2);
         font-weight: 700;
         cursor: pointer;
-        transition: all ease-in-out 300ms;
 
         &:hover {
           background: rgba($primary, 0.3);
-          transition: all ease-in-out 300ms;
         }
       }
 
-      .active {
+      .school-item-active {
+        margin-bottom: 12px;
+        padding: 12px 24px;
+        border-radius: 15px;
+        background: rgba($primary, 0.2);
+        font-weight: 700;
+        cursor: pointer;
         border: 2px solid $primary;
         background: white;
         color: $primary;
+        @include centeredItem;
+        justify-content: space-between;
       }
     }
   }
@@ -1366,12 +1372,20 @@
       .control-buttons {
         display: flex;
         gap: 12px;
+
         svg {
+          cursor: pointer;
           border-radius: 15px;
           background: $gray_light_extra;
           padding: 8px;
-        }
+          transition: all ease-in-out 200ms;
 
+          &:hover {
+            transform: scale(1.15);
+            background: $gray_medium_light;
+            transition: all ease-in-out 200ms;
+          }
+        }
       }
     }
 

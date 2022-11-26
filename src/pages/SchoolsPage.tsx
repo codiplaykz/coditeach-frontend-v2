@@ -7,13 +7,14 @@ import {SchoolResponse} from "../interfaces/SchoolResponse";
 import {getAllSchools} from "../services/school";
 import CreateSchoolModal from "../components/CreateSchoolModal";
 import Spinner from "../helpers/Spinner";
-import {Outlet, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 
 export default function SchoolsPage() {
     const [result, setResults] = useState()
     const [schools, setSchools] = useState<SchoolResponse[]>()
     const [createSchoolModalShow, setCreateSchoolModalShow] = useState(false)
     const navigate = useNavigate()
+    const {pathname} = useLocation()
 
     useEffect(()=>{
         getAllSchools().then(res=>{
@@ -22,9 +23,14 @@ export default function SchoolsPage() {
     },[setSchools])
 
     const renderedSchoolsList = schools?.map((school, index)=>{
+        let active;
+        if (pathname.includes(String(school.id))) {
+            active = true
+        }
         return (
-            <div className="school-item" onClick={()=>{navigate(`/schools/${school.id}`)}}>
+            <div className={`${active ? "school-item-active" : "school-item"}`} onClick={()=>{navigate(`/schools/${school.id}`)}}>
                 {school.name}
+                {active && <Icon color={"#4CA0FC"} size={1} name={"SignIn"}/>}
             </div>
         )
     })

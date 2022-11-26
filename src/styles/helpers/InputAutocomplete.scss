@@ -1,0 +1,139 @@
+@import '../colors';
+
+.combobox-container {
+  position: relative;
+  margin-top: 0.25rem;
+
+  .inner-container {
+    overflow: hidden;
+    position: relative;
+    background-color: #ffffff;
+    text-align: left;
+    width: 100%;
+    cursor: default;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 2px solid $gray_light;
+    border-radius: 15px;
+
+    @media (min-width: 640px) {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .input {
+      outline: none;
+      padding: 12px 24px;
+      color: #111827;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      line-height: 1.25rem;
+      width: 100%;
+      border-style: none;
+    }
+
+    .button {
+      background: transparent;
+      outline: none;
+      border: none;
+      display: flex;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      padding-right: 0.5rem;
+      align-items: center;
+
+      svg {
+        color: #9CA3AF;
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+  }
+
+  .leave {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-duration: 100ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  }
+
+  .leave-from {
+    opacity: 1;
+  }
+
+  .leave-to {
+    opacity: 0;
+  }
+
+  .options {
+    overflow: auto;
+    position: absolute;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    margin-top: 0.25rem;
+    background-color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    width: 100%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    border: 2px solid $gray_light;
+
+    @media (min-width: 640px) {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .not-found {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: #374151;
+      cursor: default;
+      user-select: none;
+    }
+
+    .option {
+      position: relative;
+      padding: 0.5rem 1rem 0.5rem 2.5rem;
+      cursor: default;
+      user-select: none;
+      color: #111827;
+
+      .text {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .text-selected {
+        font-weight: 500;
+      }
+
+      .icon {
+        display: flex;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        padding-left: 0.75rem;
+        align-items: center;
+        color: #0d9488;
+
+        svg {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+      }
+
+      .icon-active {
+        color: white;
+      }
+    }
+
+    .option-active {
+      background: #0d9488;
+      color: white;
+    }
+  }
+}

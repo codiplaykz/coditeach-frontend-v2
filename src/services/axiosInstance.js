@@ -29,6 +29,7 @@ axiosInstance.interceptors.response.use(function (response) {
 			refreshTokens().then(res => {
 				localStorage.setItem('accessToken', res?.accessToken);
 				localStorage.setItem('refreshToken', res?.refreshToken);
+				window.location.reload()
 			}).catch( (err) => {
 				console.log("refresh token api call error:", err)
 				store.dispatch(removeUser())
