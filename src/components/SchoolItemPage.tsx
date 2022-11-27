@@ -2,13 +2,20 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import Spinner from "../helpers/Spinner";
 import {SchoolResponse} from "../interfaces/SchoolResponse";
-import {deleteSchoolById, getSchoolById} from "../services/school";
+import {deleteSchoolAdminAccount, deleteSchoolById, getSchoolAdminsById, getSchoolById} from "../services/school";
 import Icon from "../helpers/Icon";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import EditSchoolModal from "./EditSchoolModal";
+import CreateSchoolAdminAccount from "./CreateSchoolAdminAccount";
+import {SchoolAdminResponse} from "../interfaces/SchoolAdminResponse";
+import CustomPopover from "../helpers/CustomPopover";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SchoolItemPage() {
     const [schoolData, setSchoolData] = useState<SchoolResponse>()
+    const [schoolAdmins, setSchoolAdmins] = useState<SchoolAdminResponse[]>([])
+    const [showCreateSchoolAdminAccModal, setShowCreateSchoolAdminAccModal] = useState(false)
     const [showDeleteSchoolModal, setShowDeleteSchoolModal] = useState(false)
     const [showEditSchoolModal, setShowEditSchoolModal] = useState(false)
     const {schoolId} = useParams()
@@ -21,7 +28,10 @@ export default function SchoolItemPage() {
                 window.location.href = '/404'
             }
         })
-    },[setSchoolData, schoolId])
+        getSchoolAdminsById(schoolId).then(res=>{
+            setSchoolAdmins(res)
+        })
+    },[setSchoolData, setSchoolAdmins, schoolId])
 
     if (!schoolData) {
         return (
@@ -53,8 +63,55 @@ export default function SchoolItemPage() {
         setShowEditSchoolModal(true)
     }
 
+    const deleteSchoolAdmin = (school_admin_id: number, user_id: number) => {
+        deleteSchoolAdminAccount(school_admin_id, user_id).then(res=>{
+            console.log(res)
+            toast("Аккаунт удален!",{type: "success"})
+
+            setTimeout(()=>{
+                window.location.reload()
+            }, 3000)
+        }).catch((err) => {
+            console.log(err)
+            toast("Что-то пошло не так, попробуйте позже.",{type: "error"})
+
+            setTimeout(()=>{
+                window.location.reload()
+            }, 3000)
+        })
+    }
+
+    // @ts-ignore
+    const renderedSchoolAdminAccounts = schoolAdmins.map((schoolAdmin, index) => {
+        return (
+            <div className="school-admin-account" key={`school-admin-acc ${index}`}>
+                <p className={"name"}>{schoolAdmin.name + ' ' + schoolAdmin.surname}</p>
+                <p className={"email"}>{schoolAdmin.email}</p>
+                <CustomPopover button={<Icon color={"grey"} size={1} name={"More"}/>}>
+                    <div className="delete-button" onClick={()=>{deleteSchoolAdmin(schoolAdmin.id, schoolAdmin.user_id)}}>
+                        <Icon color={"#F20000"} size={1} name={"Delete"}/>
+                        Удалить аккаунт
+                    </div>
+                </CustomPopover>
+            </div>
+        )
+    })
+
     return (
         <div className="school-item-page-container" key={`${id}-school-item-page`}>
+            <ToastContainer position="top-center"
+                            autoClose={2000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="colored"/>
+            <CreateSchoolAdminAccount open={showCreateSchoolAdminAccModal}
+                                      setOpen={setShowCreateSchoolAdminAccModal}
+                                      schoolId={id}/>
             <EditSchoolModal schoolData={{
                 id,
                 name,
@@ -87,7 +144,9 @@ export default function SchoolItemPage() {
                     Корпоративные аккаунты
                 </p>
 
-                <button>
+                { renderedSchoolAdminAccounts.length !== 0  ? renderedSchoolAdminAccounts : 'Нету добавленных аккаунтов'}
+
+                <button onClick={()=>{setShowCreateSchoolAdminAccModal(true)}}>
                     <Icon color={"black"} size={1} name={"AddStudents"}/>
                     Добавить аккаунт
                 </button>

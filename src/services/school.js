@@ -21,6 +21,13 @@ export const getSchoolById = (id) => {
 		.then(response => { return response.data; });
 }
 
+// Get school admins by id
+export const getSchoolAdminsById = (id) => {
+	const url = `/api/v1/school/getAllSchoolAdmins?school_id=${id}`;
+	return axiosInstance.get(url)
+		.then(response => { return response.data; });
+}
+
 // Delete school by id
 export const deleteSchoolById = (id) => {
 	const url = `/api/v1/school/delete?id=${id}`;
@@ -34,6 +41,24 @@ export const editSchool = (data) => {
 	return axiosInstance.put(url, data)
 		.then(response => { return response.data; });
 }
+
+// Create school admin account
+export const createSchoolAdminAccount = (data) => {
+	const url = `/api/v1/school/create_school_admin`;
+	return axiosInstance.post(url, data)
+		.then(response => { return response.data; });
+}
+
+// Delete school admin account
+export const deleteSchoolAdminAccount = (school_admin_id, user_id) => {
+	const url = `/api/v1/school/delete_school_admin?id=${school_admin_id}&user_id=${user_id}`;
+	return axiosInstance.delete(url)
+		.then(response => { return response.data; });
+}
+
+
+
+
 
 
 

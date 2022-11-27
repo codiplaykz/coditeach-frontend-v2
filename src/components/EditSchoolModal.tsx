@@ -1,10 +1,10 @@
 import Modal from "../helpers/Modal";
-import {Fragment, useState} from "react";
+import {useState} from "react";
 import Spinner from "../helpers/Spinner";
 import Message from "../helpers/Message";
 import {useNavigate} from "react-router-dom";
-import {RadioGroup} from "@headlessui/react";
 import {editSchool} from "../services/school";
+import LicenseExpirationPlans from "./LicenseExpirationPlans";
 
 interface EditSchoolModalProps {
     open: boolean,
@@ -20,7 +20,6 @@ interface EditSchoolModalProps {
 export default function EditSchoolModal({open, setOpen, schoolData}: EditSchoolModalProps) {
     const {id, name, location, license_expiration_date} = schoolData
     const expDateMonth = (new Date(license_expiration_date).getMonth())-(new Date().getMonth()) + 12
-    const licenseMonthPlans = [1, 3, 6, 12, 24]
     const [selectedLicensePlan, setSelectedLicensePlan] = useState(expDateMonth)
     const [schoolName, setSchoolName] = useState(name)
     const [schoolLocation, setSchoolLocation] = useState(location)
@@ -35,7 +34,7 @@ export default function EditSchoolModal({open, setOpen, schoolData}: EditSchoolM
             setMessage(<Message messageText={'Введите все поля!'} messageType={'Warning'}/>)
             setLoading(false)
         } else {
-            const expDate = new Date((new Date).setMonth(new Date().getMonth()+selectedLicensePlan))
+            const expDate = new Date((new Date()).setMonth(new Date().getMonth()+selectedLicensePlan))
             let data = {
                 id,
                 name: schoolName,
@@ -65,28 +64,6 @@ export default function EditSchoolModal({open, setOpen, schoolData}: EditSchoolM
         }
     }
 
-    const renderedLicensePlans = (
-        <RadioGroup value={selectedLicensePlan} onChange={setSelectedLicensePlan}>
-            {
-                licenseMonthPlans.map((licenseMonthPlan, index) => {
-                    return (
-                        <RadioGroup.Option key={licenseMonthPlan} as={Fragment} value={licenseMonthPlan}>
-                            {({ checked }) => (
-                                <div className={`license-plan ${checked && 'checked'}`}>
-                                    {
-                                        licenseMonthPlan < 3 ? `${licenseMonthPlan} месяц` :
-                                            (licenseMonthPlan >=3 && licenseMonthPlan < 6) || licenseMonthPlan === 24 ?
-                                                `${licenseMonthPlan} месяца` : `${licenseMonthPlan} месяцев`
-                                    }
-                                </div>
-                            )}
-                        </RadioGroup.Option>
-                    )
-                })
-            }
-        </RadioGroup>
-    )
-
     return (
         <Modal open={open} setOpen={setOpen}>
             <div className="create-school-modal">
@@ -114,9 +91,8 @@ export default function EditSchoolModal({open, setOpen, schoolData}: EditSchoolM
                     <p className="plan-title">
                         Срок лицензий
                     </p>
-                    <div className="license-plans">
-                        {renderedLicensePlans}
-                    </div>
+
+                    <LicenseExpirationPlans selected={selectedLicensePlan} setSelected={setSelectedLicensePlan}/>
                 </div>
                 <div className="buttons">
                     <button className="not-active-button" onClick={()=>setOpen(false)}>

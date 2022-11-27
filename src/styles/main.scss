@@ -1400,19 +1400,68 @@
       .title {
         font-size: 16px;
         font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .school-admin-account {
+        @include centeredItem;
+        justify-content: space-between;
+        padding: 12px 24px;
+        background: $white;
+        border-radius: 10px;
+        border: 2px solid $gray_light_extra;
+        margin-bottom: 12px;
+
+        .name {
+          font-weight: 500;
+        }
+
+        .email {
+          color: $primary;
+          text-decoration: underline;
+        }
+
+        svg {
+          cursor: pointer;
+        }
+
+        .delete-button {
+          cursor: pointer;
+          transition: all ease-in-out 200ms;
+          color: $error;
+          width: 180px;
+          padding: 12px;
+          border-radius: 10px;
+          @include centeredItem();
+          justify-content: start;
+
+          svg {
+            margin-right: 12px;
+          }
+
+          &:hover {
+            transition: all ease-in-out 200ms;
+            background: rgba($error, 0.1);
+          }
+        }
       }
 
       button {
         cursor: pointer;
-        margin: 12px 0;
+        margin: 24px 0 0;
         font-weight: 700;
         border: none;
         background: transparent;
-
+        transition: all ease-in-out 300ms;
         @include centeredItem;
 
         svg {
           margin-right: 12px;
+        }
+
+        &:hover {
+          transform: scale(1.05);
+          transition: all ease-in-out 300ms;
         }
       }
     }
@@ -1477,5 +1526,17 @@
     button {
       width: 50%;
     }
+  }
+}
+
+.create-school-admin-account-modal {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
   }
 }

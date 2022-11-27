@@ -3,22 +3,13 @@ import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import '../styles/helpers/InputAutocomplete.scss'
 
-const people = [
-    { id: 1, name: 'Wade Cooper' },
-    { id: 2, name: 'Arlene Mccoy' },
-    { id: 3, name: 'Devon Webb' },
-    { id: 4, name: 'Tom Cook' },
-    { id: 5, name: 'Tanya Fox' },
-    { id: 6, name: 'Hellen Schmidt' },
-]
-
-interface InputAutocomplete {
+interface InputAutocompleteProps {
     array: any[],
     selected: any,
     setSelected: Function
 }
 
-export default function InputAutocomplete({array, selected, setSelected}: InputAutocomplete) {
+export default function InputAutocomplete({array, selected, setSelected}: InputAutocompleteProps) {
     const [query, setQuery] = useState('')
 
     const filtered =
