@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import Spinner from "../helpers/Spinner";
-import {SchoolResponse} from "../interfaces/SchoolResponse";
-import {deleteSchoolAdminAccount, deleteSchoolById, getSchoolAdminsById, getSchoolById} from "../services/school";
-import Icon from "../helpers/Icon";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import Spinner from "../../../helpers/Spinner";
+import {SchoolResponse} from "../../../interfaces/SchoolResponse";
+import {deleteSchoolAdminAccount, deleteSchoolById, getSchoolAdminsById, getSchoolById} from "../../../services/school";
+import Icon from "../../../helpers/Icon";
+import DeleteConfirmationModal from "../../../components/DeleteConfirmationModal";
 import EditSchoolModal from "./EditSchoolModal";
 import CreateSchoolAdminAccount from "./CreateSchoolAdminAccount";
-import {SchoolAdminResponse} from "../interfaces/SchoolAdminResponse";
-import CustomPopover from "../helpers/CustomPopover";
+import {SchoolAdminResponse} from "../../../interfaces/SchoolAdminResponse";
+import CustomPopover from "../../../helpers/CustomPopover";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

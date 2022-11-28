@@ -1,7 +1,7 @@
-import Spinner from "../helpers/Spinner";
-import Icon from "../helpers/Icon";
+import Spinner from "../../../helpers/Spinner";
+import Icon from "../../../helpers/Icon";
 import {useNavigate} from "react-router-dom";
-import {ProjectResponse} from "../interfaces/ProjectResponse";
+import {ProjectResponse} from "../../../interfaces/ProjectResponse";
 
 interface ProjectsListProps {
     selectedCategory: number

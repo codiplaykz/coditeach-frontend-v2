@@ -1,7 +1,7 @@
 import {useState} from "react";
 // @ts-ignore
-import cube from "../assets/images/3dcube.svg";
-import Icon from "../helpers/Icon";
+import cube from "../../../assets/images/3dcube.svg";
+import Icon from "../../../helpers/Icon";
 import CreateProjectModal from "./CreateProjectModal";
 
 export default function CreateProjectCover() {

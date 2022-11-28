@@ -1,8 +1,8 @@
-import Modal from "../helpers/Modal";
+import Modal from "../../../helpers/Modal";
 import {useState} from "react";
-import {createSchoolAdminAccount} from "../services/school";
-import Message from "../helpers/Message";
-import Spinner from "../helpers/Spinner";
+import {createSchoolAdminAccount} from "../../../services/school";
+import Message from "../../../helpers/Message";
+import Spinner from "../../../helpers/Spinner";
 
 interface CreateSchoolAdminAccountProps{
     open: boolean,

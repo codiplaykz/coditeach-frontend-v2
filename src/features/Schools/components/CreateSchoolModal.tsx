@@ -1,10 +1,10 @@
-import Modal from "../helpers/Modal";
+import Modal from "../../../helpers/Modal";
 import {useState} from "react";
-import Spinner from "../helpers/Spinner";
-import Message from "../helpers/Message";
+import Spinner from "../../../helpers/Spinner";
+import Message from "../../../helpers/Message";
 import {useNavigate} from "react-router-dom";
-import {createSchool} from "../services/school";
-import InputAutocomplete from "../helpers/InputAutocomplete";
+import {createSchool} from "../../../services/school";
+import InputAutocomplete from "../../../helpers/InputAutocomplete";
 import LicenseExpirationPlans from "./LicenseExpirationPlans";
 
 interface CreateSchoolModalProps {

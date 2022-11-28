@@ -2,7 +2,7 @@ import GoBackButton from "../components/GoBackButton";
 import Icon from "../helpers/Icon";
 import {useProject} from "../hooks/use-project";
 import {useEffect, useState} from "react";
-import EditProjectModal from "../components/EditProjectModal";
+import EditProjectModal from "../features/Projects/components/EditProjectModal";
 import ImageUploadPlaceholder from "../helpers/ImageUploadPlaceholder";
 import {useNavigate} from "react-router-dom";
 import ConfirmActionModal from "../components/ConfirmActionModal";

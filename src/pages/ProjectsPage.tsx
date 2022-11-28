@@ -1,9 +1,9 @@
 import Icon from "../helpers/Icon";
 import {useEffect, useState} from "react";
 import {Outlet} from "react-router-dom";
-import CreateProjectModal from "../components/CreateProjectModal";
+import CreateProjectModal from "../features/Projects/components/CreateProjectModal";
 import GoBackButton from "../components/GoBackButton";
-import ProjectsList from "../components/ProjectsList";
+import ProjectsList from "../features/Projects/components/ProjectsList";
 import {getAllProjects} from "../services/project";
 import {ProjectResponse} from "../interfaces/ProjectResponse";
 import CreateButton from "../components/CreateButton";

@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
-import {getProjectById} from "../services/project";
+import {getProjectById} from "../../../services/project";
 import {useParams} from "react-router-dom";
-import {ProjectResponse} from "../interfaces/ProjectResponse";
-import Spinner from "../helpers/Spinner";
-import Icon from "../helpers/Icon";
+import {ProjectResponse} from "../../../interfaces/ProjectResponse";
+import Spinner from "../../../helpers/Spinner";
+import Icon from "../../../helpers/Icon";
 import SourceCodeSection from "./SourceCodeSection";
 
 export default function ProjectItemPage() {

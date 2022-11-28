@@ -293,11 +293,13 @@
 .sidebar-container {
   top: 0;
   left: 0;
+  bottom: 0;
   position: fixed;
-  width: calc(20vw - 100px);
-  height: 100vh;
-  padding: 50px;
   display: grid;
+  grid-template-rows: 10% 60% 25%;
+  width: calc(20vw - 100px);
+  height: 100%;
+  padding: 50px;
 
   .sidebar-header {
     cursor: pointer;
@@ -318,7 +320,7 @@
       font-weight: bold;
       font-size: 16px;
       padding: 10px 15px;
-      margin: 20px 0;
+      margin: 10px 0;
       cursor: pointer;
       border-radius: 10px;
       transition: all ease-in-out 300ms;
@@ -376,6 +378,7 @@
     }
 
     .sidebar-email {
+      font-size: 16px;
       color: $gray_medium_light;
     }
 
@@ -386,7 +389,6 @@
         cursor: pointer;
       }
     }
-
   }
 }
 

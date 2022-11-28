@@ -1,7 +1,7 @@
 import {useState} from "react";
 // @ts-ignore
-import rock from "../assets/images/Rock.svg";
-import Icon from "../helpers/Icon";
+import rock from "../../../assets/images/Rock.svg";
+import Icon from "../../../helpers/Icon";
 import CreateSchoolModal from "./CreateSchoolModal";
 
 export default function CreateSchoolCover() {

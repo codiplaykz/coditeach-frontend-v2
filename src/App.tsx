@@ -4,16 +4,16 @@ import {Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./helpers/ProtectedRoute";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./layouts/Sidebar";
 import ProjectsPage from "./pages/ProjectsPage";
 import CreateProjectPage from "./pages/CreateProjectPage";
-import CreateProjectCover from "./components/CreateProjectCover";
-import ProjectItemPage from "./components/ProjectItemPage";
+import CreateProjectCover from "./features/Projects/components/CreateProjectCover";
+import ProjectItemPage from "./features/Projects/components/ProjectItemPage";
 import SchoolsPage from "./pages/SchoolsPage";
 import ErrorPage from "./pages/ErrorPage";
 import NetworkStatusBar from "./components/NetworkStatusBar";
-import CreateSchoolCover from "./components/CreateSchoolCover";
-import SchoolItemPage from "./components/SchoolItemPage";
+import CreateSchoolCover from "./features/Schools/components/CreateSchoolCover";
+import SchoolItemPage from "./features/Schools/components/SchoolItemPage";
 
 function App() {
   return (

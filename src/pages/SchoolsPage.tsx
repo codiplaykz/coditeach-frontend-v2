@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import CreateButton from "../components/CreateButton";
 import {SchoolResponse} from "../interfaces/SchoolResponse";
 import {getAllSchools} from "../services/school";
-import CreateSchoolModal from "../components/CreateSchoolModal";
+import CreateSchoolModal from "../features/Schools/components/CreateSchoolModal";
 import Spinner from "../helpers/Spinner";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 

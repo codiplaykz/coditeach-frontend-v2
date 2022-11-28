@@ -1,12 +1,12 @@
-import Modal from "../helpers/Modal";
+import Modal from "../../../helpers/Modal";
 import {useState} from "react";
-import Spinner from "../helpers/Spinner";
-import Message from "../helpers/Message";
+import Spinner from "../../../helpers/Spinner";
+import Message from "../../../helpers/Message";
 import {useNavigate} from "react-router-dom";
-import {editSchool} from "../services/school";
-import LicenseExpirationPlans from "./LicenseExpirationPlans";
-import InputAutocomplete from "../helpers/InputAutocomplete";
+import {editSchool} from "../../../services/school";
+import InputAutocomplete from "../../../helpers/InputAutocomplete";
 import {KZCities} from "./CreateSchoolModal";
+import LicenseExpirationPlans from "./LicenseExpirationPlans";
 
 interface EditSchoolModalProps {
     open: boolean,
