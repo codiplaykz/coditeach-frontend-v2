@@ -5,6 +5,8 @@ import Message from "../helpers/Message";
 import {useNavigate} from "react-router-dom";
 import {editSchool} from "../services/school";
 import LicenseExpirationPlans from "./LicenseExpirationPlans";
+import InputAutocomplete from "../helpers/InputAutocomplete";
+import {KZCities} from "./CreateSchoolModal";
 
 interface EditSchoolModalProps {
     open: boolean,
@@ -83,9 +85,7 @@ export default function EditSchoolModal({open, setOpen, schoolData}: EditSchoolM
                         Город или село
                     </p>
 
-                    <input type="text" value={schoolLocation}
-                           onChange={(event) => {setSchoolLocation(event.target.value)}}
-                           placeholder={"Введите название города или села"} className={"default-input"}/>
+                    <InputAutocomplete array={KZCities} selected={schoolLocation} setSelected={setSchoolLocation}/>
                 </div>
                 <div className="license-plan">
                     <p className="plan-title">
