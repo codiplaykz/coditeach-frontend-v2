@@ -886,6 +886,7 @@
 
 .divider {
   border: 1px solid $gray_light_extra;
+  margin: 12px 0;
 }
 
 .create-school-modal {
@@ -1540,5 +1541,199 @@
   .title {
     font-size: 16px;
     font-weight: 700;
+  }
+}
+
+.curriculums-page {
+  display: grid;
+  grid-template-columns: 20vw 50vw;
+  grid-gap: 24px;
+
+  .curriculums-sidebar {
+    .title {
+      margin: 36px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        font-size: 24px;
+        font-weight: 600;
+
+        .schools-num {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.create-curriculum-page {
+  display: grid;
+  grid-template-columns: 20vw 50vw;
+  grid-gap: 24px;
+
+  .curriculums-sidebar {
+    .title {
+      font-weight: 700;
+      font-size: 24px;
+    }
+
+    .modules {
+      margin-top: 20px;
+
+      .module {
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 20px calc(100% - 60px) 30px 20px;
+        padding: 12px;
+        border-radius: 10px;
+        align-items: center;
+
+        .num {
+          font-size: 20px;
+          font-weight: 600;
+          color: $primary;
+        }
+
+        .info {
+          .title {
+            font-size: 16px;
+            font-weight: 600;
+          }
+          .duration {
+            font-size: 12px;
+            color: $gray_medium;
+          }
+        }
+
+        .button {
+          width: 20px;
+          height: 20px;
+          color: $primary;
+
+          .rotate-0 {
+            transition: all ease-in-out 200ms;
+          }
+
+          .rotate-180 {
+            transform: rotate(-180deg);
+            transition: all ease-in-out 200ms;
+          }
+        }
+
+        .button-delete {
+          width: 20px;
+          height: 20px;
+          color: $error;
+        }
+      }
+    }
+
+    .blocks {
+      border-left: 2px solid $gray_light_extra;
+      margin-top: 20px;
+      margin-left: 20px;
+      padding-left: 20px;
+
+      .block {
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 20px calc(100% - 60px) 30px 20px;
+        padding: 12px;
+        border-radius: 10px;
+        align-items: center;
+
+        .num {
+          font-size: 20px;
+          font-weight: 600;
+          color: $primary;
+        }
+
+        .info {
+          .title {
+            font-size: 16px;
+            font-weight: 600;
+          }
+          .duration {
+            font-size: 12px;
+            color: $gray_medium;
+          }
+        }
+
+        .button {
+          width: 20px;
+          height: 20px;
+          color: $primary;
+
+          .rotate-0 {
+            transition: all ease-in-out 200ms;
+          }
+
+          .rotate-180 {
+            transform: rotate(-180deg);
+            transition: all ease-in-out 200ms;
+          }
+        }
+
+        .button-delete {
+          width: 20px;
+          height: 20px;
+          color: $error;
+        }
+      }
+    }
+  }
+}
+
+.create-module-button {
+  @include centeredItem;
+  background: #ffffff;
+  border: 2px solid $gray_light;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all ease-in-out 200ms;
+
+  &:hover {
+    transition: all ease-in-out 200ms;
+    background: $gray_light_extra;
+  }
+
+  svg {
+    margin-right: 12px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.add-module-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .subtitle {
+    margin-bottom: 12px;
+  }
+}
+
+.add-block-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .subtitle {
+    margin-bottom: 12px;
   }
 }

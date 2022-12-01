@@ -19,8 +19,8 @@ export default function Sidebar() {
         },
         {
             iconName: 'Lessons',
-            title: 'Уроки',
-            link: ''
+            title: 'Учебные планы',
+            link: '/curriculums'
         },
         {
             iconName: 'Project',
@@ -53,7 +53,7 @@ export default function Sidebar() {
             link: ''
         }
     ]
-    const [activeItem, setActiveItem] = useState(0)
+    const [activeItem, setActiveItem] = useState(-1)
     const user = useAuth()
     const dispatch = useDispatch()
     const {pathname} = useLocation()

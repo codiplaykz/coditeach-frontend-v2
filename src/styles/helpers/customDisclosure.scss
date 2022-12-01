@@ -1,0 +1,41 @@
+@import "../colors";
+@import "../main";
+
+.d-button {
+  outline: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: start;
+}
+
+.enter {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 100ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+.enterFrom {
+  --transform-scale-x: .95;
+  --transform-scale-y: .95;
+  opacity: 0;
+}
+.enterTo {
+  --transform-scale-x: 1;
+  --transform-scale-y: 1;
+  opacity: 1;
+}
+.leave {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 75ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+.leaveFrom {
+  --transform-scale-x: 1;
+  --transform-scale-y: 1;
+  opacity: 1;
+}
+.leaveTo {
+  --transform-scale-x: .95;
+  --transform-scale-y: .95;
+  opacity: 0;
+}

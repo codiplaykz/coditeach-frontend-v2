@@ -14,6 +14,8 @@ import ErrorPage from "./pages/ErrorPage";
 import NetworkStatusBar from "./components/NetworkStatusBar";
 import CreateSchoolCover from "./features/Schools/components/CreateSchoolCover";
 import SchoolItemPage from "./features/Schools/components/SchoolItemPage";
+import CurriculumsPage from "./pages/CurriculumsPage";
+import CreateCurriculumPage from "./pages/CreateCurriculumPage";
 
 function App() {
   return (
@@ -36,7 +38,8 @@ function App() {
                   <Route path={'schools/:schoolId'} element={<SchoolsPage/>}>
                       <Route index element={<SchoolItemPage/>}/>
                   </Route>
-
+                  <Route path={'curriculums'} element={<CurriculumsPage/>}/>
+                  <Route path={'create-curriculum'} element={<CreateCurriculumPage/>}/>
               </Route>
               <Route path={'*'} element={<ErrorPage errorCode={404}/>}/>
               <Route path={'/500'} element={<ErrorPage errorCode={500}/>}/>
