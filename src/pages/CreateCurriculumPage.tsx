@@ -1,12 +1,12 @@
 import CustomDisclosure from "../components/CustomDisclosure";
 import ModuleButton from "../features/Curriculums/components/ModuleButton";
 import {useState} from "react";
-import Icon from "../helpers/Icon";
 import {PlusIcon} from "@heroicons/react/24/outline";
 import AddModuleModal from "../features/Curriculums/components/AddModuleModal";
 import Divider from "../components/Divider";
 import BlockButton from "../features/Curriculums/components/BlockButton";
 import AddBlockModal from "../features/Curriculums/components/AddBlockModal";
+import LessonConstructor from "../features/Curriculums/components/LessonConstructor";
 
 interface Block {
     title: string,
@@ -138,6 +138,7 @@ export default function CreateCurriculumPage() {
                     </button>
                 </div>
             </div>
+            <LessonConstructor/>
         </div>
     )
 }

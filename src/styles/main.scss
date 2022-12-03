@@ -419,7 +419,7 @@
   padding: 0 12px;
   outline: none;
 
-  &:focus-within search-container {
+  &:focus-within .search-container {
     opacity: 1;
   }
 }
@@ -860,11 +860,11 @@
       @keyframes bounce {
         0%, 100% {
           transform: translateY(-25%);
-          animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
         }
         50% {
           transform: translateY(0);
-          animationTimingFunction: cubic-bezier(0, 0, 0.2, 1);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
         }
       };
 
@@ -1512,11 +1512,11 @@
       @keyframes bounce {
         0%, 100% {
           transform: translateY(-25%);
-          animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
         }
         50% {
           transform: translateY(0);
-          animationTimingFunction: cubic-bezier(0, 0, 0.2, 1);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
         }
       };
 
@@ -1683,6 +1683,41 @@
         }
       }
     }
+  }
+
+  .lesson-constructor-container {
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .structure {
+
+    }
+
+    .buttons {
+      margin: 24px 0;
+      display: flex;
+      gap: 24px;
+    }
+  }
+}
+
+.text-editor {
+  margin: 24px 0;
+
+  .wrapper-class {
+    border: 2px solid $gray_light_extra;
+    border-radius: 15px;
+  }
+
+  .editor-class {
+    padding: 24px;
+    border-radius: 15px;
+  }
+
+  .toolbar-class {
+    border-radius: 15px;
   }
 }
 

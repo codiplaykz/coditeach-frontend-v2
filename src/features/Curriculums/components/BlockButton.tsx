@@ -11,8 +11,12 @@ interface BlockButtonProps {
 export default function BlockButton({numbering, title, duration, deleteFunction}: BlockButtonProps) {
     const [show, hide] = useState(false)
 
+    const handleClick = () => {
+        hide(!show)
+    }
+
     return (
-        <div className="block">
+        <div className="block" onClick={handleClick}>
             <div className="num">{numbering}</div>
             <div className="info">
                 <p className="title">Блок: {title}</p>

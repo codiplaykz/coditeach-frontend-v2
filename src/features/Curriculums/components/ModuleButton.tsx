@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {ChevronUpIcon, TrashIcon} from "@heroicons/react/24/outline";
 
 interface ModuleButtonProps {
@@ -11,8 +11,12 @@ interface ModuleButtonProps {
 export default function ModuleButton({numbering, title, duration, deleteFunction}: ModuleButtonProps) {
     const [show, hide] = useState(false)
 
+    const handleClick = () => {
+        hide(!show)
+    }
+
     return (
-        <div className="module">
+        <div className="module" onClick={handleClick}>
             <div className="num">{numbering}</div>
             <div className="info">
                 <p className="title">Модуль: {title}</p>
@@ -23,7 +27,7 @@ export default function ModuleButton({numbering, title, duration, deleteFunction
                     <TrashIcon/>
                 </div>
             ) : null}
-            <div className="button" onClick={()=>{hide(!show)}}>
+            <div className="button">
                 <ChevronUpIcon className={`${show ? 'rotate-180' : 'rotate-0'}`}/>
             </div>
         </div>
