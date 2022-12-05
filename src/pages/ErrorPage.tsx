@@ -45,7 +45,7 @@ export default function ErrorPage({errorCode}: ErrorPageProps) {
                                 <Icon color={"gray"} size={1} name={"Back"}/>
                                 Вернуться назад
                             </button>
-                            <button onClick={()=>{navigate(0)}}>На главную</button>
+                            <button onClick={()=>{navigate('/')}}>На главную</button>
                         </div>
                     </div>
                 </div>

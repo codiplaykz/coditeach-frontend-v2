@@ -1571,7 +1571,7 @@
 .create-curriculum-page {
   display: grid;
   grid-template-columns: 20vw 50vw;
-  grid-gap: 24px;
+  grid-gap: 50px;
 
   .curriculums-sidebar {
     .title {
@@ -1579,127 +1579,208 @@
       font-size: 24px;
     }
 
-    .modules {
+    @mixin disclosure-buttons {
       margin-top: 20px;
 
-      .module {
+      .disclosure-button {
         cursor: pointer;
         display: grid;
-        grid-template-columns: 20px calc(100% - 60px) 30px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 12px;
         border-radius: 10px;
-        align-items: center;
 
-        .num {
-          font-size: 20px;
-          font-weight: 600;
-          color: $primary;
-        }
+        .inner {
+          display: flex;
+          align-items: center;
 
-        .info {
-          .title {
-            font-size: 16px;
+          .num {
+            margin-right: 12px;
+            font-size: 20px;
             font-weight: 600;
-          }
-          .duration {
-            font-size: 12px;
-            color: $gray_medium;
-          }
-        }
-
-        .button {
-          width: 20px;
-          height: 20px;
-          color: $primary;
-
-          .rotate-0 {
-            transition: all ease-in-out 200ms;
+            color: $primary;
           }
 
-          .rotate-180 {
-            transform: rotate(-180deg);
-            transition: all ease-in-out 200ms;
+          .info {
+            .title {
+              font-size: 16px;
+              font-weight: 600;
+            }
+            .duration {
+              font-size: 12px;
+              color: $gray_medium;
+            }
           }
         }
 
-        .button-delete {
-          width: 20px;
-          height: 20px;
-          color: $error;
+        .buttons {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          justify-content: space-between;
+
+          .button {
+            width: 20px;
+            height: 20px;
+            color: $primary;
+
+            .rotate-0 {
+              transition: all ease-in-out 200ms;
+            }
+
+            .rotate-180 {
+              transform: rotate(-180deg);
+              transition: all ease-in-out 200ms;
+            }
+          }
+
+          .button-delete {
+            width: 20px;
+            height: 20px;
+            color: $error;
+          }
         }
       }
     }
 
+    .modules {
+      @include disclosure-buttons
+    }
+
     .blocks {
+      @include disclosure-buttons;
+      border-left: 2px solid $gray_light_extra;
+      margin-left: 20px;
+      padding-left: 20px;
+    }
+
+    .lessons {
       border-left: 2px solid $gray_light_extra;
       margin-top: 20px;
       margin-left: 20px;
       padding-left: 20px;
+      margin-bottom: 20px;
 
-      .block {
-        cursor: pointer;
-        display: grid;
-        grid-template-columns: 20px calc(100% - 60px) 30px 20px;
-        padding: 12px;
-        border-radius: 10px;
+      .lesson {
+        display: flex;
         align-items: center;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 2px solid $gray_light_extra;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all ease-in-out 200ms;
+        justify-content: space-between;
 
-        .num {
-          font-size: 20px;
-          font-weight: 600;
-          color: $primary;
+        &:hover {
+          border: 2px solid $primary;
+          transition: all ease-in-out 200ms;
         }
 
-        .info {
-          .title {
-            font-size: 16px;
+        .inner {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+
+          .num {
+            margin-right: 12px;
+            font-size: 20px;
             font-weight: 600;
-          }
-          .duration {
-            font-size: 12px;
-            color: $gray_medium;
-          }
-        }
-
-        .button {
-          width: 20px;
-          height: 20px;
-          color: $primary;
-
-          .rotate-0 {
-            transition: all ease-in-out 200ms;
+            color: $primary;
           }
 
-          .rotate-180 {
-            transform: rotate(-180deg);
-            transition: all ease-in-out 200ms;
+          .info {
+            .title {
+              font-size: 16px;
+              font-weight: 600;
+            }
+            .duration {
+              font-size: 12px;
+              color: $gray_medium;
+            }
           }
         }
 
-        .button-delete {
-          width: 20px;
-          height: 20px;
-          color: $error;
+        .icons {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+
+          svg {
+            width: 20px;
+            height: 20px;
+            color: $primary;
+          }
+
+          svg:first-child {
+            color: $error;
+          }
         }
+      }
+
+      .active {
+        transition: all ease-in-out 200ms;
+        border: 2px solid $primary;
       }
     }
   }
+}
 
-  .lesson-constructor-container {
-    .title {
-      font-size: 24px;
-      font-weight: 700;
+.lesson-container {
+  .title {
+    font-weight: 700;
+    font-size: 24px;
+
+    span {
+      color: $primary;
+    }
+  }
+
+  .duration {
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: $gray_medium;
+  }
+
+  .desc {
+    padding: 24px;
+    border-radius: 10px;
+    border: 2px solid $gray_light_extra;
+    margin-bottom: 24px;
+
+    p:first-child {
+      font-weight: 500;
+      color: $gray_medium;
+      margin-bottom: 12px;
     }
 
-    .structure {
-
+    p:nth-child(2) {
+      font-size: 20px;
+      margin-bottom: 24px;
     }
+  }
+}
 
-    .buttons {
-      margin: 24px 0;
-      display: flex;
-      gap: 24px;
+.lesson-constructor-container {
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .structure {
+    margin: 50px 0;
+
+    .lesson-input-label {
+      margin: 12px 0;
+      font-weight: 500;
     }
+  }
+
+  .buttons {
+    margin: 24px 0;
+    display: flex;
+    gap: 24px;
   }
 }
 

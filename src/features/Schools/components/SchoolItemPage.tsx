@@ -9,7 +9,7 @@ import EditSchoolModal from "./EditSchoolModal";
 import CreateSchoolAdminAccount from "./CreateSchoolAdminAccount";
 import {SchoolAdminResponse} from "../../../interfaces/SchoolAdminResponse";
 import CustomPopover from "../../../helpers/CustomPopover";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function SchoolItemPage() {
@@ -99,16 +99,6 @@ export default function SchoolItemPage() {
 
     return (
         <div className="school-item-page-container" key={`${id}-school-item-page`}>
-            <ToastContainer position="top-center"
-                            autoClose={2000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="colored"/>
             <CreateSchoolAdminAccount open={showCreateSchoolAdminAccModal}
                                       setOpen={setShowCreateSchoolAdminAccModal}
                                       schoolId={id}/>

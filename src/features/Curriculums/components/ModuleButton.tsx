@@ -16,19 +16,23 @@ export default function ModuleButton({numbering, title, duration, deleteFunction
     }
 
     return (
-        <div className="module" onClick={handleClick}>
-            <div className="num">{numbering}</div>
-            <div className="info">
-                <p className="title">Модуль: {title}</p>
-                <p className="duration">{duration} мин</p>
-            </div>
-            {deleteFunction ? (
-                <div className="button-delete" onClick={()=>{deleteFunction()}}>
-                    <TrashIcon/>
+        <div className="disclosure-button" onClick={handleClick}>
+            <div className={"inner"}>
+                <div className="num">{numbering}</div>
+                <div className="info">
+                    <p className="title">Модуль: {title}</p>
+                    <p className="duration">{duration} мин</p>
                 </div>
-            ) : null}
-            <div className="button">
-                <ChevronUpIcon className={`${show ? 'rotate-180' : 'rotate-0'}`}/>
+            </div>
+            <div className="buttons">
+                {deleteFunction ? (
+                    <div className="button-delete" onClick={()=>{deleteFunction()}}>
+                        <TrashIcon/>
+                    </div>
+                ) : null}
+                <div className="button">
+                    <ChevronUpIcon className={`${show ? 'rotate-180' : 'rotate-0'}`}/>
+                </div>
             </div>
         </div>
     )

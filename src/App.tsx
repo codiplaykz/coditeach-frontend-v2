@@ -16,10 +16,21 @@ import CreateSchoolCover from "./features/Schools/components/CreateSchoolCover";
 import SchoolItemPage from "./features/Schools/components/SchoolItemPage";
 import CurriculumsPage from "./pages/CurriculumsPage";
 import CreateCurriculumPage from "./pages/CreateCurriculumPage";
+import {ToastContainer} from "react-toastify";
 
 function App() {
   return (
       <div className="App">
+          <ToastContainer position="top-center"
+                          autoClose={2000}
+                          hideProgressBar={false}
+                          newestOnTop={false}
+                          closeOnClick
+                          rtl={false}
+                          pauseOnFocusLoss
+                          draggable
+                          pauseOnHover
+                          theme="colored"/>
           {<NetworkStatusBar/>}
           <Routes>
               <Route path={"/login"} element={<LoginPage/>}/>

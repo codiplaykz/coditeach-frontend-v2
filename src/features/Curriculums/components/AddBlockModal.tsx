@@ -2,20 +2,21 @@ import Modal from "../../../helpers/Modal";
 import Icon from "../../../helpers/Icon";
 import {ReactElement, useState} from "react";
 import Message from "../../../helpers/Message";
+import {useDispatch} from "react-redux";
+import {addBlock, addModule} from "../../../store/slices/curriculumSlice";
 
 interface AddBlockModalProps {
-    addBlock: Function
     open: boolean
     setOpen: Function
-    blockTitle: string
-    setBlockTitle: Function
-    blockDesc: string
-    setBlockDesc: Function
 }
 
 export default function AddBlockModal(props: AddBlockModalProps) {
-    const {addBlock, open, setOpen, blockTitle, setBlockTitle, blockDesc, setBlockDesc} = props
+    const { open, setOpen } = props
+    const [blockTitle, setBlockTitle] = useState('')
+    const [blockDesc, setBlockDesc] = useState('')
     const [error, setError] = useState<ReactElement>()
+    const dispatch = useDispatch()
+
     const complete = () => {
         if (blockTitle === '' || blockDesc === '') {
             setError(<Message messageText={"Введите все поля."} messageType={"Warning"}/>)
@@ -23,7 +24,15 @@ export default function AddBlockModal(props: AddBlockModalProps) {
                 setError(<></>)
             }, 5000)
         } else {
-            addBlock()
+            let block = {
+                title: blockTitle,
+                description: blockDesc,
+                lessons: []
+            }
+            setBlockTitle('')
+            setBlockDesc('')
+            dispatch(addBlock({block: block}))
+            setOpen(false)
         }
     }
 

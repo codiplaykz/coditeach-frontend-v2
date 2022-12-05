@@ -6,9 +6,10 @@ interface ModalProps {
     open: boolean,
     setOpen: Function
     children: ReactElement
+    style?: any
 }
 
-export default function Modal({open, setOpen, children}: ModalProps) {
+export default function Modal({open, setOpen, children, style}: ModalProps) {
     const cancelButtonRef = useRef(null)
 
     return (
@@ -37,7 +38,7 @@ export default function Modal({open, setOpen, children}: ModalProps) {
                             leaveFrom="s11"
                             leaveTo="s12"
                         >
-                            <Dialog.Panel className="s13">
+                            <Dialog.Panel className="s13" style={style}>
                                 <div className="s16">
                                     {children}
                                 </div>
