@@ -1,5 +1,4 @@
-import {useState} from "react";
-import {ChevronRightIcon, ChevronUpIcon, TrashIcon} from "@heroicons/react/24/outline";
+import {ChevronRightIcon, TrashIcon} from "@heroicons/react/24/outline";
 
 interface LessonButtonProps {
     isActive: boolean

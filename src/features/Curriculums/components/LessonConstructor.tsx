@@ -17,7 +17,7 @@ interface LessonConstructorProps {
 export default function LessonConstructor({close}: LessonConstructorProps) {
     const [lessonContent, setLessonContent] = useState('')
     const [lessonTitle, setLessonTitle] = useState('')
-    const [lessonDuration, setLessonDuration] = useState('')
+    const [lessonDuration, setLessonDuration] = useState(0)
     const [lessonDescription, setLessonDescription] = useState('')
     const [error, setError] = useState<ReactElement>()
     const dispatch = useDispatch()
@@ -62,7 +62,7 @@ export default function LessonConstructor({close}: LessonConstructorProps) {
                 <input type="number" className="default-input"
                        value={lessonDuration}
                        placeholder={"Введите длительность урока"}
-                       onChange={(e)=>{setLessonDuration(e.target.value)}}/>
+                       onChange={(e)=>{setLessonDuration(+e.target.value)}}/>
 
                 <p className={"lesson-input-label"}>Описание урока</p>
                 <textarea className="default-input"

@@ -4,15 +4,19 @@ import ModuleButton from "./ModuleButton";
 import Divider from "../../../components/Divider";
 import {useDispatch} from "react-redux";
 import {
-    deleteBlock, deleteLesson,
+    deleteBlock,
+    deleteLesson,
     deleteModule,
-    setSelectedBlockId, setSelectedLessonId,
-    setSelectedModuleId, setShowLessonConstructor, setShowLessonContainer
+    setSelectedBlockId,
+    setSelectedLessonId,
+    setSelectedModuleId,
+    setShowLessonConstructor,
+    setShowLessonContainer
 } from "../../../store/slices/curriculumSlice";
 import {useState} from "react";
 import AddModuleModal from "./AddModuleModal";
 import AddBlockModal from "./AddBlockModal";
-import {ChevronRightIcon, PlusIcon} from "@heroicons/react/24/outline";
+import {PlusIcon} from "@heroicons/react/24/outline";
 import BlockButton from "./BlockButton";
 import LessonButton from "./LessonButton";
 

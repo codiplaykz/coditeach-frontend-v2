@@ -3,7 +3,7 @@ import Icon from "../../../helpers/Icon";
 import {ReactElement, useState} from "react";
 import Message from "../../../helpers/Message";
 import {useDispatch} from "react-redux";
-import {addBlock, addModule} from "../../../store/slices/curriculumSlice";
+import {addBlock} from "../../../store/slices/curriculumSlice";
 
 interface AddBlockModalProps {
     open: boolean

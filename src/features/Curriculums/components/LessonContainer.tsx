@@ -10,10 +10,15 @@ export default function LessonContainer() {
         selectedLessonId,
     } = useCurriculum()
 
-    console.log(modules)
-    let lesson = modules[selectedModuleId].blocks[selectedBlockId].lessons[selectedLessonId]
+    let lesson = modules[selectedModuleId]?.blocks[selectedBlockId]?.lessons[selectedLessonId]
 
-    console.log(lesson)
+    if (!lesson) {
+        return (
+            <>
+            </>
+        )
+    }
+
     return (
         <div className="lesson-container">
             <p className="title">
