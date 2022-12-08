@@ -1565,6 +1565,47 @@
         }
       }
     }
+
+    .curriculums-list {
+      margin: 24px 0;
+
+      .curriculum-item {
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+
+        .info {
+          .title {
+            margin: 0 0 6px 0;
+            font-weight: 700;
+          }
+          .counts {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: $primary;
+            margin-bottom: 12px;
+
+            .dot {
+              height: 5px;
+              width: 5px;
+              background-color: $primary;
+              border-radius: 50%;
+              display: inline-block;
+            }
+          }
+          .created-date, .name {
+            color: $gray_medium_light;
+            display: flex;
+            align-items: center;
+
+            svg {
+              margin-right: 6px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -1724,6 +1765,21 @@
         border: 2px solid $primary;
       }
     }
+  }
+}
+
+.create-curriculum-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .subtitle {
+    margin-bottom: 12px;
   }
 }
 

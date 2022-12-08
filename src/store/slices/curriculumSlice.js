@@ -15,6 +15,10 @@ const curriculumSlice= createSlice({
     name: 'curriculum',
     initialState,
     reducers: {
+        setCurriculumInfo(state, action) {
+            state.title = action.payload.title
+            state.description = action.payload.description
+        },
         addModule(state, action) {
             state.modules.push(action.payload.module);
         },
@@ -54,7 +58,8 @@ const curriculumSlice= createSlice({
     },
 });
 
-export const {  addModule,
+export const {  setCurriculumInfo,
+                addModule,
                 addBlock,
                 addLesson,
                 deleteBlock,

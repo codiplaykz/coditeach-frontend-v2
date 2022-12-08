@@ -12,6 +12,8 @@ import MessageModal from "../components/MessageModal";
 export default function CreateCurriculumPage() {
     const {
         modules,
+        title,
+        description,
         showLessonConstructor,
         showLessonContainer,
     } = useCurriculum()
@@ -49,8 +51,8 @@ export default function CreateCurriculumPage() {
         if (isCurriculumExists()) {
             let data = {
                 user_id: user.Id,
-                title: "Title",
-                description: "Description",
+                title: title,
+                description: description,
                 modules: modules
             }
             composeCurriculum(data).then(res=>{
