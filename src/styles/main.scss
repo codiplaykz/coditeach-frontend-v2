@@ -1964,3 +1964,26 @@
     margin-bottom: 12px;
   }
 }
+
+.tests-page {
+  display: grid;
+  grid-template-columns: 20vw 50vw;
+  grid-gap: 50px;
+
+  .title {
+    margin: 24px 0;
+    font-size: 24px;
+    font-weight: 700;
+
+    .count {
+      color: $primary;
+    }
+  }
+}
+
+.tests-list {
+
+  .test-item {
+
+  }
+}

@@ -30,7 +30,7 @@ export default function Sidebar() {
         {
             iconName: 'Test',
             title: 'Тесты',
-            link: ''
+            link: '/tests'
         },
         {
             iconName: 'Student',

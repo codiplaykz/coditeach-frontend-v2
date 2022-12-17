@@ -7,7 +7,6 @@ import {getAllCurriculums} from "../services/curriculums";
 import CurriculumsList from "../features/Curriculums/components/CurriculumsList";
 // @ts-ignore
 import cone from "../assets/images/3dcone.png";
-import {useNavigate} from "react-router-dom";
 
 export default function CurriculumsPage() {
     const [showCreateCurriculumModal, setShowCreateCurriculumModal] = useState(false)
