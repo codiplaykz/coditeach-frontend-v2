@@ -5,11 +5,12 @@ import '../styles/helpers/customDisclosure.scss'
 interface CustomDisclosureProps {
     button: any,
     content: any
+    props?: any
 }
 
-export default function CustomDisclosure({button, content}: CustomDisclosureProps) {
+export default function CustomDisclosure({button, content, ...props}: CustomDisclosureProps) {
     return (
-        <Disclosure>
+        <Disclosure {...props} defaultOpen={true}>
             <Disclosure.Button className="d-button">
                 {button}
             </Disclosure.Button>

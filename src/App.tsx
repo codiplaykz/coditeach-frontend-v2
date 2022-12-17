@@ -17,6 +17,7 @@ import SchoolItemPage from "./features/Schools/components/SchoolItemPage";
 import CurriculumsPage from "./pages/CurriculumsPage";
 import CreateCurriculumPage from "./pages/CreateCurriculumPage";
 import {ToastContainer} from "react-toastify";
+import CurriculumPage from "./pages/CurriculumPage";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
                       <Route index element={<SchoolItemPage/>}/>
                   </Route>
                   <Route path={'curriculums'} element={<CurriculumsPage/>}/>
+                  <Route path={'curriculum/:curriculumId'} element={<CurriculumPage/>}/>
                   <Route path={'create-curriculum'} element={<CreateCurriculumPage/>}/>
               </Route>
               <Route path={'*'} element={<ErrorPage errorCode={404}/>}/>

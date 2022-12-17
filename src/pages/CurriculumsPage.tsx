@@ -1,11 +1,13 @@
 import GoBackButton from "../components/GoBackButton";
 import Icon from "../helpers/Icon";
-import {Outlet} from "react-router-dom";
 import {useEffect, useState} from "react";
 import CreateCurriculumModal from "../features/Curriculums/components/CreateCurriculumModal";
 import CurriculumResponse from "../interfaces/CurriculumResponse";
 import {getAllCurriculums} from "../services/curriculums";
 import CurriculumsList from "../features/Curriculums/components/CurriculumsList";
+// @ts-ignore
+import cone from "../assets/images/3dcone.png";
+import {useNavigate} from "react-router-dom";
 
 export default function CurriculumsPage() {
     const [showCreateCurriculumModal, setShowCreateCurriculumModal] = useState(false)
@@ -34,7 +36,17 @@ export default function CurriculumsPage() {
                 <CurriculumsList curriculumList={curriculums ?? null}/>
             </div>
 
-            <Outlet/>
+            <div className="create-cover">
+                <img src={cone} alt="3dcone"/>
+                <p>
+                    Выберите учебный план для просмотра.
+                </p>
+
+                <button className="active-button" onClick={()=>setShowCreateCurriculumModal(true)}>
+                    <Icon color={"white"} size={1} name={"Add"}/>
+                    Создать учебный план
+                </button>
+            </div>
         </div>
     )
 }

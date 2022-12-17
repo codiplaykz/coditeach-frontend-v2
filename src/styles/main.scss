@@ -208,7 +208,7 @@
 .login-page {
   height: 100vh;
   width: 100vw;
-  background-image: url('../assets/images/background.jpg');
+  background-image: url('../assets/images/login_background.jpg');
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
@@ -844,44 +844,44 @@
     }
   }
 
-  .create-project-cover {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    justify-content: center;
-
-    img {
-      width: 30%;
-      margin-bottom: 50px;
-      animation: bounce 3s infinite;
-
-      @keyframes bounce {
-        0%, 100% {
-          transform: translateY(-25%);
-          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
-        50% {
-          transform: translateY(0);
-          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        }
-      };
-
-    }
-
-    p {
-      font-size: 24px;
-    }
-
-    button {
-      width: 50% ;
-    }
-  }
-
   //@media screen and (max-width: $small) {
   //  //do Smth
   //}
+}
+
+.create-cover {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  justify-content: center;
+
+  img {
+    width: 30%;
+    margin-bottom: 50px;
+    animation: bounce 3s infinite;
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    };
+
+  }
+
+  p {
+    font-size: 24px;
+  }
+
+  button {
+    width: 50% ;
+  }
 }
 
 .divider {
@@ -1570,6 +1570,7 @@
       margin: 24px 0;
 
       .curriculum-item {
+        cursor: pointer;
         padding: 16px 24px;
         display: flex;
         justify-content: space-between;
@@ -1585,14 +1586,6 @@
             gap: 5px;
             color: $primary;
             margin-bottom: 12px;
-
-            .dot {
-              height: 5px;
-              width: 5px;
-              background-color: $primary;
-              border-radius: 50%;
-              display: inline-block;
-            }
           }
           .created-date, .name {
             color: $gray_medium_light;
@@ -1609,161 +1602,223 @@
   }
 }
 
-.create-curriculum-page {
+.dot {
+  height: 5px;
+  width: 5px;
+  background-color: $primary;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.curriculum-page {
   display: grid;
   grid-template-columns: 20vw 50vw;
   grid-gap: 50px;
 
-  .curriculums-sidebar {
-    .title {
+  .header {
+    margin: 30px 0;
+
+    .main-title {
       font-weight: 700;
       font-size: 24px;
     }
 
-    @mixin disclosure-buttons {
-      margin-top: 20px;
+    .counts {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      color: $primary;
+      font-weight: 700;
 
-      .disclosure-button {
-        cursor: pointer;
-        display: grid;
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+        margin-left: 24px;
+      }
+
+      svg:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.curriculum-lesson-container {
+  .info {
+    margin: 50px 0;
+    border-left: 4px solid $primary;
+    padding: 12px 24px;
+
+    .title {
+      font-weight: 700;
+      font-size: 30px;
+    }
+
+    .duration {
+      margin: 10px 0 20px 0;
+      font-weight: 600;
+      color: $primary;
+    }
+
+    .description {
+      font-size: 20px;
+      color: $gray;
+    }
+  }
+}
+
+.create-curriculum-page {
+  display: grid;
+  grid-template-columns: 20vw 50vw;
+  grid-gap: 50px;
+}
+
+.curriculums-sidebar {
+  .title {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  @mixin disclosure-buttons {
+    margin-top: 20px;
+
+    .disclosure-button {
+      cursor: pointer;
+      display: grid;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-radius: 10px;
+
+      .inner {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 12px;
-        border-radius: 10px;
 
-        .inner {
-          display: flex;
-          align-items: center;
-
-          .num {
-            margin-right: 12px;
-            font-size: 20px;
-            font-weight: 600;
-            color: $primary;
-          }
-
-          .info {
-            .title {
-              font-size: 16px;
-              font-weight: 600;
-            }
-            .duration {
-              font-size: 12px;
-              color: $gray_medium;
-            }
-          }
+        .num {
+          margin-right: 12px;
+          font-size: 20px;
+          font-weight: 600;
+          color: $primary;
         }
 
-        .buttons {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          justify-content: space-between;
-
-          .button {
-            width: 20px;
-            height: 20px;
-            color: $primary;
-
-            .rotate-0 {
-              transition: all ease-in-out 200ms;
-            }
-
-            .rotate-180 {
-              transform: rotate(-180deg);
-              transition: all ease-in-out 200ms;
-            }
+        .info {
+          .title {
+            font-size: 16px;
+            font-weight: 600;
           }
-
-          .button-delete {
-            width: 20px;
-            height: 20px;
-            color: $error;
+          .duration {
+            font-size: 12px;
+            color: $gray_medium;
           }
         }
       }
-    }
 
-    .modules {
-      @include disclosure-buttons
-    }
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: space-between;
 
-    .blocks {
-      @include disclosure-buttons;
-      border-left: 2px solid $gray_light_extra;
-      margin-left: 20px;
-      padding-left: 20px;
-    }
+        .button {
+          width: 20px;
+          height: 20px;
+          color: $primary;
 
-    .lessons {
-      border-left: 2px solid $gray_light_extra;
-      margin-top: 20px;
-      margin-left: 20px;
-      padding-left: 20px;
+          .rotate-0 {
+            transition: all ease-in-out 200ms;
+          }
+
+          .rotate-180 {
+            transform: rotate(-180deg);
+            transition: all ease-in-out 200ms;
+          }
+        }
+
+        .button-delete {
+          width: 20px;
+          height: 20px;
+          color: $error;
+        }
+      }
+    }
+  }
+
+  .modules {
+    @include disclosure-buttons
+  }
+
+  .blocks {
+    @include disclosure-buttons;
+    border-left: 2px solid $gray_light_extra;
+    margin-left: 20px;
+    padding-left: 20px;
+  }
+
+  .lessons {
+    border-left: 2px solid $gray_light_extra;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+
+    .lesson {
+      display: flex;
+      align-items: center;
       margin-bottom: 20px;
+      padding: 12px;
+      border: 2px solid $gray_light_extra;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all ease-in-out 200ms;
+      justify-content: space-between;
 
-      .lesson {
+      &:hover {
+        border: 2px solid $primary;
+        transition: all ease-in-out 200ms;
+      }
+
+      .inner {
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
-        padding: 12px;
-        border: 2px solid $gray_light_extra;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all ease-in-out 200ms;
-        justify-content: space-between;
+        gap: 12px;
 
-        &:hover {
-          border: 2px solid $primary;
-          transition: all ease-in-out 200ms;
+        .num {
+          margin-right: 12px;
+          font-size: 20px;
+          font-weight: 600;
+          color: $primary;
         }
 
-        .inner {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-
-          .num {
-            margin-right: 12px;
-            font-size: 20px;
+        .info {
+          .title {
+            font-size: 16px;
             font-weight: 600;
-            color: $primary;
           }
-
-          .info {
-            .title {
-              font-size: 16px;
-              font-weight: 600;
-            }
-            .duration {
-              font-size: 12px;
-              color: $gray_medium;
-            }
-          }
-        }
-
-        .icons {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-
-          svg {
-            width: 20px;
-            height: 20px;
-            color: $primary;
-          }
-
-          svg:first-child {
-            color: $error;
+          .duration {
+            font-size: 12px;
+            color: $gray_medium;
           }
         }
       }
 
-      .active {
-        transition: all ease-in-out 200ms;
-        border: 2px solid $primary;
+      .icons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        svg {
+          width: 20px;
+          height: 20px;
+          color: $primary;
+        }
       }
+    }
+
+    .active {
+      transition: all ease-in-out 200ms;
+      border: 2px solid $primary;
     }
   }
 }

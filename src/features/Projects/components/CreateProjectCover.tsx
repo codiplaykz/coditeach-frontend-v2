@@ -8,7 +8,7 @@ export default function CreateProjectCover() {
     const [createProjectModalShow, setCreateProjectModalShow] = useState(false)
 
     return (
-        <div className="create-project-cover">
+        <div className="create-cover">
             <CreateProjectModal open={createProjectModalShow} setOpen={setCreateProjectModalShow}/>
             <img src={cube} alt="3dcube"/>
             <p>

@@ -10,9 +10,9 @@ export const getAllCurriculums = () => {
     return axiosInstance.get(url)
         .then(response => { return response.data; });
 };
-//
-// export const getProjectById = (id) => {
-//     const url = `/api/v1/project/get?id=${id}`;
-//     return axiosInstance.get(url)
-//         .then(response => { return response.data; });
-// }
+
+export const getCurriculumById = (id) => {
+    const url = `/api/v1/curriculum/get?id=${id}`;
+    return axiosInstance.get(url)
+        .then(response => { return response.data; });
+}
